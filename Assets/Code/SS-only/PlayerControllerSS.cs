@@ -63,7 +63,7 @@ public class PlayerControllerSS : MonoBehaviour
 
 		if (gamepad.IsConnected) {
 			if (gamepad.GetTriggerTap_R ()) {
-				string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon();
+				string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon ();
 				if (heldWeapon == "Grenade") {
 					StartCoroutine (GrenadeThrow ());
 				} else if (heldWeapon == "Gun") {
@@ -82,28 +82,33 @@ public class PlayerControllerSS : MonoBehaviour
 			transform.Translate (moveY, 0, moveX);
 
 			if (gamepad.GetButtonDown ("LB")) {
-//				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
+				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
 			}
 			if (gamepad.GetButtonDown ("RB")) {
-//				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
+				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
 			}
 			gamepad.Refresh ();
-		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon ();
-			if (heldWeapon == "Grenade") {
-				StartCoroutine (GrenadeThrow ());
-			} else if (heldWeapon == "Gun") {
-				Fire ();
-			} else if (heldWeapon == "Barricade") {
-				DropBarricade ();
+		} else {
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon ();
+				if (heldWeapon == "Grenade") {
+					StartCoroutine (GrenadeThrow ());
+				} else if (heldWeapon == "Gun") {
+					Fire ();
+				} else if (heldWeapon == "Barricade") {
+					DropBarricade ();
+				}
+			} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
+			} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
 			}
-		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			this.GetComponent<BasicInventory> ().ChangeWeapon (true);
-		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			this.GetComponent<BasicInventory> ().ChangeWeapon (false);
-		}
+			var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+			var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
+			transform.Rotate(0, x, 0);
+			transform.Translate(0, 0, z);
+		}
 	}
 
 	void OnCollisionEnter(Collision col){
@@ -162,6 +167,7 @@ public class PlayerControllerSS : MonoBehaviour
 		// Initiate and throw
 		GameObject grenade = Instantiate (grenadePrefab, projectileSpawn.position, projectileSpawn.rotation);
 		grenade.GetComponent<Rigidbody> ().velocity = grenade.transform.forward * throwForce;
+		grenade.transform.localScale = this.transform.localScale * 10;
 		yield return new WaitForSeconds(0.05f);
 		// Show player-held grenade again
 		heldGrenade.SetActive (true);

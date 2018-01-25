@@ -52,7 +52,9 @@ public class BasicInventory : MonoBehaviour {
 	}
 
 	public string GetWeapon(){
-		return heldWeapons[heldWeaponIndex].name;
+		string currentWeapon = heldWeapons[heldWeaponIndex].name;
+		currentWeapon = currentWeapon.Replace ("Held", "");
+		return currentWeapon;
 	}
 
 	void ShowCrosshair(bool showCrosshair){

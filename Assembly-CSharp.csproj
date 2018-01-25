@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CF8D1591-D435-4ECA-23B8-9AB93972C3C2}</ProjectGuid>
+    <ProjectGuid>{E35E46E4-FF67-26BD-3D48-06C02125346F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,9 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Assets\UI\BarScript.cs" />
-     <Compile Include="Assets\Assets\UI\Stat.cs" />
-     <Compile Include="Assets\Assets\UI\UIManager.cs" />
+     <Compile Include="Assets\AllAssets\UI\BarScript.cs" />
+     <Compile Include="Assets\AllAssets\UI\Stat.cs" />
+     <Compile Include="Assets\AllAssets\UI\UIManager.cs" />
      <Compile Include="Assets\Code\BasicInventory.cs" />
      <Compile Include="Assets\Code\BulletCollision.cs" />
      <Compile Include="Assets\Code\EnemyChase.cs" />
@@ -63,7 +63,7 @@
      <Compile Include="Assets\Code\ZombieSpawner.cs" />
      <None Include="Assets\Code\XInputDotNet\Docs.txt" />
      <None Include="Assets\Code\XInputDotNet\MITLicense.txt" />
-     <None Include="Assets\Assets\Basic Materials\Transparent Specular.shader" />
+     <None Include="Assets\AllAssets\Basic Materials\Transparent Specular.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity 5.6.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -86,7 +86,7 @@
  <HintPath>E:/Program Files/Unity 5.6.1f1/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="XInputDotNetPure">
- <HintPath>C:/Users/Gacsam/Desktop/TeamProject/Assets/Code/XInputDotNet/Plugins/XInputDotNetPure.dll</HintPath>
+ <HintPath>C:/Users/Gacsam/Desktop/Dead Fast/Assets/Code/XInputDotNet/Plugins/XInputDotNetPure.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>E:/Program Files/Unity 5.6.1f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
