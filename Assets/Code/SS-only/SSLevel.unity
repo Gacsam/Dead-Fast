@@ -96,15 +96,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
+    agentRadius: 0.1
+    agentHeight: 1
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 1
@@ -388,9 +388,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1101349443}
-  - component: {fileID: 1101349442}
-  - component: {fileID: 1101349441}
   - component: {fileID: 1101349444}
+  - component: {fileID: 1101349441}
+  - component: {fileID: 1101349442}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9290630a42ca947b1823153a8ae3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAmount: 1
-  player: {fileID: 1990911183782738, guid: 41f7560dc0adc1847b25cb3cd5a35c8e, type: 2}
+  playerAmount: 2
+  player: {fileID: 1136288647002286, guid: 57a2970c6853c914297352af5a7e5826, type: 2}
 --- !u!114 &1101349442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombieTemplate: {fileID: 1686003087903782, guid: eb5f5cef8366b6446b84b4ea7f43bf10,
     type: 2}
-  zombieLimit: 25
+  zombieLimit: 1
 --- !u!4 &1101349443
 Transform:
   m_ObjectHideFlags: 0

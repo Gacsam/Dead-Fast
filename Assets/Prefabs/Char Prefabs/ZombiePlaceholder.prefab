@@ -415,6 +415,7 @@ MonoBehaviour:
   maximumNoiseDistance: 25
   lifeHits: 3
   maximumIdle: 3
+  searchTime: 10
   zombieState: 0
 --- !u!136 &136378813441306608
 CapsuleCollider:

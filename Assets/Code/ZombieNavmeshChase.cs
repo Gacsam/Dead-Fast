@@ -18,12 +18,16 @@ public class ZombieNavmeshChase : MonoBehaviour {
 	[Tooltip("How many bullets to kill")]
 	public int lifeHits = 3;
 	[Tooltip("Maximum time zombies don't do anything")]
-	public float maximumIdle = 3f;
+	public int maximumIdle = 3;
+	[Tooltip("After what time do zombies stop looking around the area")]
+	public int searchTime = 10;
 	public enum States{Idle, Wander, Search, Noise, Chase};
 	public States zombieState;
 	private NavMeshAgent zombieGPS;
 	private GameObject[] players;
 	private GameObject zombieTarget;
+	private bool wanderingSearching = false;
+	private Coroutine runningCoroutine;
 
 	bool RandomPoint(Vector3 center, float range, out Vector3 result) {
 		for (int i = 0; i < 30; i++) {
@@ -50,9 +54,10 @@ public class ZombieNavmeshChase : MonoBehaviour {
 
 	void Start() {
 		zombieGPS = this.GetComponent<NavMeshAgent> ();
-		zombieGPS.speed = wanderSpeed;
+		zombieGPS.speed = wanderSpeed * Time.deltaTime;
 		zombieState = States.Wander;
-		StartCoroutine(RandomiseWander (this.transform.position, 0));
+		runningCoroutine = StartCoroutine(RandomiseWander (this.transform.position));
+		StopCoroutine (runningCoroutine);
 		if(players == null)
 			players = GameObject.FindGameObjectsWithTag("Character");
 	}
@@ -64,16 +69,29 @@ public class ZombieNavmeshChase : MonoBehaviour {
 			if (characterDistance <= distanceToNotice) {
 				if (LineOfSight (zombieTarget.transform)) {
 					zombieGPS.destination = zombieTarget.transform.position;
+					zombieGPS.stoppingDistance = 0;
+//					transform.LookAt(zombieTarget.transform);
 				} else if (zombieGPS.remainingDistance <= 3) {
-					zombieGPS.stoppingDistance = 3;
+					zombieGPS.stoppingDistance = 1;
 					zombieState = States.Search;
 				}
 			}
-		} else if (zombieState == States.Search) {
-			StartCoroutine(RandomiseWander (zombieGPS.destination, 3));
+		} else if (zombieState == States.Search && zombieGPS.remainingDistance <= 1) {
+			if (!wanderingSearching) {
+				wanderingSearching = true;
+				runningCoroutine = StartCoroutine (RandomiseWander (zombieGPS.destination));
+				StartCoroutine (DisableWander ());
+			}
+		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 1) {
+			zombieGPS.speed = wanderSpeed;
+			zombieState = States.Search;
+		} else if (zombieState == States.Wander && zombieGPS.remainingDistance <= 3) {
+//				StartCoroutine (RandomiseWander (this.transform.position, 0));
+//				StartCoroutine (DisableWander ());
+//				wanderingSearching = true;
 		}
-		// Noise State is handled completely by baitedZombies, do not add IF for it
-		else if (zombieState != States.Chase) {
+
+		if (zombieState != States.Chase) {
 			foreach (GameObject player in players) {
 				float characterDistance = Vector3.Distance (player.transform.position, this.transform.position);
 				if (characterDistance <= distanceToNotice) {
@@ -81,43 +99,42 @@ public class ZombieNavmeshChase : MonoBehaviour {
 						zombieGPS.destination = player.transform.position;
 						zombieTarget = player;
 						zombieGPS.stoppingDistance = 0.1f;
-						zombieGPS.speed = wanderSpeed * 3;
+						zombieGPS.speed = wanderSpeed * Time.deltaTime;
 						zombieState = States.Chase;
-						return;
+						wanderingSearching = false;
 					}
 				}
 			}
-		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 3 && Random.Range (0, inHowManyPatrolChance) == 0) {
-			zombieGPS.speed = wanderSpeed;
-			zombieState = States.Wander;
-			return;
-		} else if (zombieState == States.Wander && zombieGPS.remainingDistance <= 3) {
-			StartCoroutine(RandomiseWander (this.transform.position, 0));
 		}
 	}
 
-	IEnumerator RandomiseWander(Vector3 aroundPosition, int repeats){
-		int loop = 0;
-		do {
-			if (Random.Range (0, inHowManyPatrolChance) == 0) {
-				Vector3 point;
-				if (RandomPoint (aroundPosition, wanderRange, out point)) {
-					zombieGPS.destination = point;
-					yield return new WaitForSeconds (Random.Range(0f, maximumIdle));
-				}
+	IEnumerator RandomiseWander(Vector3 aroundPosition){
+		Debug.Log ("Coroutine X");
+		while (true) {
+			Vector3 point;
+			if (RandomPoint (aroundPosition, wanderRange, out point)) {
+				zombieGPS.destination = point;
+				yield return new WaitForSeconds (1 + Random.Range (0f, 3));
 			}
-			loop += 1;
-		} while(repeats < loop);
+		}
+	}
+
+	IEnumerator DisableWander(){
+		yield return new WaitForSeconds (15);
+		StopCoroutine (runningCoroutine);
+		zombieState = States.Wander;
+		wanderingSearching = false;
 	}
 
 	public void baitedZombie(Vector3 baitLocation){
+		wanderingSearching = false;
 		if (zombieState != States.Chase) {
 			if (Vector3.Distance (this.transform.position, baitLocation) < maximumNoiseDistance) {
+				zombieState = States.Noise;
 				// Set the agent's new destination to the player's position
 				zombieGPS.destination = baitLocation;
 				zombieGPS.speed = wanderSpeed * 2;
 				zombieGPS.stoppingDistance = 1;
-				zombieState = States.Noise;
 			}
 		}
 	}

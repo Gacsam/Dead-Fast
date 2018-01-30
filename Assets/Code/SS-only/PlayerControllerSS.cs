@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class PlayerControllerSS : MonoBehaviour
@@ -25,21 +26,41 @@ public class PlayerControllerSS : MonoBehaviour
 		gamepadIndex = newIndex;
 	}
 
+    // Inventory system
+	private List<WeaponScript> inventory = new List<WeaponScript>();
+
+    public void WeaponPickup(WeaponScript pickedWeapon)
+    {
+		// Go through all the weapons in inventory
+        foreach(WeaponScript currentWeapon in inventory)
+        {
+			// Check if weapon already exists in inventory
+			if(currentWeapon.GetWeaponType() == pickedWeapon.GetWeaponType())
+			{
+				// If it exists, take the ammo and close the loop
+				currentWeapon.ModAmmo(pickedWeapon.GetAmmo());
+				return;
+            }
+        }
+		// If it doesn't exist, add the weapon to inventory
+		inventory.Add (pickedWeapon);
+    }
+
 	void Start(){
 		Component[] thePlayerComponents = this.GetComponentsInChildren<MeshRenderer> ();
 		bool gunPicked = false;
 		bool grenadePicked = false;
 		bool barricadePicked = false;
 		foreach (MeshRenderer playerComponents in thePlayerComponents) {
-			if (playerComponents.name == "HeldGun" && !gunPicked) {
+			if (playerComponents.name == "heldGun" && !gunPicked) {
 				heldGun = playerComponents.gameObject;
 				gunPicked = true;
 			}
-			if(playerComponents.name == "HeldGrenade" && !grenadePicked){
+			if(playerComponents.name == "heldGrenade" && !grenadePicked){
 				heldGrenade = playerComponents.gameObject;
 				grenadePicked = true;
 			}
-			if(playerComponents.name == "HeldBarricade" && !barricadePicked){
+			if(playerComponents.name == "heldBarricade" && !barricadePicked){
 				heldBarricade = playerComponents.gameObject;
 				barricadePicked = true;
 			}
@@ -47,13 +68,13 @@ public class PlayerControllerSS : MonoBehaviour
 
 		// Set player visibility layers
 		if (this.name == "Player 1") {
-			heldGun.layer = 8;
-			heldGrenade.layer = 8;
-			heldBarricade.layer = 8;
+//			heldGun.layer = 8;
+//			heldGrenade.layer = 8;
+//			heldBarricade.layer = 8;
 		}else{
-			heldGrenade.layer = 9;
-			heldGun.layer = 9;
-			heldBarricade.layer = 9;
+//			heldGrenade.layer = 9;
+//			heldGun.layer = 9;
+//			heldBarricade.layer = 9;
 		}
 	}
 
@@ -98,9 +119,9 @@ public class PlayerControllerSS : MonoBehaviour
 				} else if (heldWeapon == "Barricade") {
 					DropBarricade ();
 				}
-			} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			} else if (Input.GetKeyDown (KeyCode.Q)) {
 				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
-			} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			} else if (Input.GetKeyDown (KeyCode.E)) {
 				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
 			}
 			var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
