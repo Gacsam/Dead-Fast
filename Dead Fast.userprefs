@@ -1,19 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\SS-only\PlayerControllerSS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\ZombieNavmeshChase.cs">
     <Files>
-      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="56" Column="43" />
+      <File FileName="Assets\Code\ZombieSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\ZombieNavmeshChase.cs" Line="97" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieNavmeshChase.cs" line="82" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieNavmeshChase.cs" line="80" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\SplitScreen.cs" line="27" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\SplitScreen.cs" line="25" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\SplitScreen.cs" line="22" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\SplitScreen.cs" line="21" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\SplitScreen.cs" line="20" column="27" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\SS-only\PlayerControllerSS.cs" line="42" column="43" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

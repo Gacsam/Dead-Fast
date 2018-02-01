@@ -4,11 +4,12 @@ using UnityEngine.AI;
 public class ZombieSpawner : MonoBehaviour {
 
 	public GameObject zombieTemplate;
-	public int zombieLimit = 10;
+	public int zombieLimit = 25;
 
 	// Use this for initialization
 	void Start () {
-		
+		// Create singleton instance
+		DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame

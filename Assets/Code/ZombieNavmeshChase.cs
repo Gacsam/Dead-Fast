@@ -44,6 +44,7 @@ public class ZombieNavmeshChase : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "Bullet") {
+			Destroy(col.gameObject);
 			lifeHits -= 1;
 			wanderSpeed -= 0.25f;
 			if (lifeHits <= 0) {
@@ -54,7 +55,7 @@ public class ZombieNavmeshChase : MonoBehaviour {
 
 	void Start() {
 		zombieGPS = this.GetComponent<NavMeshAgent> ();
-		zombieGPS.speed = wanderSpeed * Time.deltaTime;
+		zombieGPS.speed = wanderSpeed;
 		zombieState = States.Wander;
 		runningCoroutine = StartCoroutine(RandomiseWander (this.transform.position));
 		StopCoroutine (runningCoroutine);
@@ -85,10 +86,10 @@ public class ZombieNavmeshChase : MonoBehaviour {
 		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 1) {
 			zombieGPS.speed = wanderSpeed;
 			zombieState = States.Search;
-		} else if (zombieState == States.Wander && zombieGPS.remainingDistance <= 3) {
-//				StartCoroutine (RandomiseWander (this.transform.position, 0));
-//				StartCoroutine (DisableWander ());
-//				wanderingSearching = true;
+		} else if (zombieState == States.Wander && zombieGPS.remainingDistance <= 1) {
+				StartCoroutine (RandomiseWander (this.transform.position));
+				StartCoroutine (DisableWander ());
+				wanderingSearching = true;
 		}
 
 		if (zombieState != States.Chase) {
@@ -99,7 +100,7 @@ public class ZombieNavmeshChase : MonoBehaviour {
 						zombieGPS.destination = player.transform.position;
 						zombieTarget = player;
 						zombieGPS.stoppingDistance = 0.1f;
-						zombieGPS.speed = wanderSpeed * Time.deltaTime;
+						zombieGPS.speed = wanderSpeed * 2;
 						zombieState = States.Chase;
 						wanderingSearching = false;
 					}
@@ -109,7 +110,6 @@ public class ZombieNavmeshChase : MonoBehaviour {
 	}
 
 	IEnumerator RandomiseWander(Vector3 aroundPosition){
-		Debug.Log ("Coroutine X");
 		while (true) {
 			Vector3 point;
 			if (RandomPoint (aroundPosition, wanderRange, out point)) {

@@ -9,128 +9,122 @@ public class PlayerControllerSS : MonoBehaviour
 	public int gamepadIndex;
 	private x360_Gamepad gamepad;
 
-	public Transform projectileSpawn;
-	public Transform barricadeSpawn;
-	public GameObject bulletPrefab;
-	public GameObject grenadePrefab;
-	public GameObject barricadePrefab;
-
-	private GameObject heldGrenade;
-	private GameObject heldGun;
-	private GameObject heldBarricade;
 	public int playerHealth = 5;
 	private bool invincibilityFrame;
 	public int throwForce = 25;
+	private advancedInventory playerInventory;
+	public int rotationSpeed = 50;
+	public int moveSpeed = 3;
+	public int jumpHeight = 3;
+
+	[Tooltip("Are you using keyboard/mouse?")]
+	public bool mouseKeyboard = true;
+
+	[Tooltip("Are you using a gamepad?")]
+	public bool gamepadPlugged = false;
+	
 
 	public void SetGamepadIndex(int newIndex){
 		gamepadIndex = newIndex;
 	}
 
-    // Inventory system
-	private List<WeaponScript> inventory = new List<WeaponScript>();
-
-    public void WeaponPickup(WeaponScript pickedWeapon)
-    {
-		// Go through all the weapons in inventory
-        foreach(WeaponScript currentWeapon in inventory)
-        {
-			// Check if weapon already exists in inventory
-			if(currentWeapon.GetWeaponType() == pickedWeapon.GetWeaponType())
-			{
-				// If it exists, take the ammo and close the loop
-				currentWeapon.ModAmmo(pickedWeapon.GetAmmo());
-				return;
-            }
-        }
-		// If it doesn't exist, add the weapon to inventory
-		inventory.Add (pickedWeapon);
-    }
 
 	void Start(){
-		Component[] thePlayerComponents = this.GetComponentsInChildren<MeshRenderer> ();
-		bool gunPicked = false;
-		bool grenadePicked = false;
-		bool barricadePicked = false;
-		foreach (MeshRenderer playerComponents in thePlayerComponents) {
-			if (playerComponents.name == "heldGun" && !gunPicked) {
-				heldGun = playerComponents.gameObject;
-				gunPicked = true;
-			}
-			if(playerComponents.name == "heldGrenade" && !grenadePicked){
-				heldGrenade = playerComponents.gameObject;
-				grenadePicked = true;
-			}
-			if(playerComponents.name == "heldBarricade" && !barricadePicked){
-				heldBarricade = playerComponents.gameObject;
-				barricadePicked = true;
-			}
+		playerInventory = this.GetComponent<advancedInventory> ();
+		int playerLayer = 9;
+		switch (this.name) {
+		case "Player 2":
+			playerLayer = 8;
+			break;
+		default:
+			break;
 		}
-
-		// Set player visibility layers
-		if (this.name == "Player 1") {
-//			heldGun.layer = 8;
-//			heldGrenade.layer = 8;
-//			heldBarricade.layer = 8;
-		}else{
-//			heldGrenade.layer = 9;
-//			heldGun.layer = 9;
-//			heldBarricade.layer = 9;
-		}
+		playerInventory.SetLayers (playerLayer);
 	}
 
-	void Update()
+	void Update ()
 	{
-		gamepad = GamepadManager.Instance.GetGamepad (gamepadIndex);
-
-		if (gamepad.IsConnected) {
-			if (gamepad.GetTriggerTap_R ()) {
-				string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon ();
-				if (heldWeapon == "Grenade") {
-					StartCoroutine (GrenadeThrow ());
-				} else if (heldWeapon == "Gun") {
-					Fire ();
-				} else if (heldWeapon == "Barricade") {
-					DropBarricade ();
+		if (gamepadPlugged) {
+			gamepad = GamepadManager.Instance.GetGamepad (gamepadIndex);
+			if (gamepad.IsConnected) {
+				if (gamepad.GetTriggerTap_R ()) {
+					WeaponScript.Weapon theWeapon = playerInventory.getWeapon ();
+					if (playerInventory.GetWeaponAmmo () > 0) {
+						if (theWeapon == WeaponScript.Weapon.Melee) {
+							MeleeAttack ();
+						} else if (theWeapon == WeaponScript.Weapon.Grenade) {
+							StartCoroutine (GrenadeThrow ());
+						} else if (theWeapon == WeaponScript.Weapon.Gun) {
+							Fire ();
+						} else if (theWeapon == WeaponScript.Weapon.Barricade) {
+							DropBarricade ();
+						} else
+							Debug.Log ("No Weapon");
+					}
 				}
-			}
-			float rotateY = gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
-			float rotateZ = gamepad.GetStick_R ().Y * Time.deltaTime * 150.0f;
-			float moveX = gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
-			float moveY = gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
-			Mathf.Clamp (rotateZ + transform.rotation.eulerAngles.x, -89, 89);
-
-			transform.eulerAngles += new Vector3 (-rotateZ, rotateY, 0);
-			transform.Translate (moveY, 0, moveX);
-
-			if (gamepad.GetButtonDown ("LB")) {
-				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
-			}
-			if (gamepad.GetButtonDown ("RB")) {
-				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
-			}
-			gamepad.Refresh ();
-		} else {
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				string heldWeapon = this.GetComponent<BasicInventory> ().GetWeapon ();
-				if (heldWeapon == "Grenade") {
-					StartCoroutine (GrenadeThrow ());
-				} else if (heldWeapon == "Gun") {
-					Fire ();
-				} else if (heldWeapon == "Barricade") {
-					DropBarricade ();
+				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.isDynamicInventory ()) {
+					playerInventory.NextWeapon ();
+				
+					if (!playerInventory.isMelee ())
+						playerInventory.ModAmmo (-1);
 				}
-			} else if (Input.GetKeyDown (KeyCode.Q)) {
-				this.GetComponent<BasicInventory> ().ChangeWeapon (true);
-			} else if (Input.GetKeyDown (KeyCode.E)) {
-				this.GetComponent<BasicInventory> ().ChangeWeapon (false);
-			}
-			var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-			var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+				float rotateY = gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
+				float rotateZ = gamepad.GetStick_R ().Y * Time.deltaTime * 150.0f;
+				float moveX = gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
+				float moveY = gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
+				Mathf.Clamp (rotateZ + transform.rotation.eulerAngles.x, -89, 89);
 
-			transform.Rotate(0, x, 0);
-			transform.Translate(0, 0, z);
+				transform.eulerAngles += new Vector3 (-rotateZ, rotateY, 0);
+				transform.Translate (moveY, 0, moveX);
+
+				if (gamepad.GetButtonDown ("LB")) {
+					playerInventory.PrevWeapon ();
+				} else if (gamepad.GetButtonDown ("RB")) {
+					playerInventory.NextWeapon ();
+				}
+				if (gamepad.GetButtonDown ("Guide")) {
+					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+				}
+				gamepad.Refresh ();
+			}
 		}
+
+		if (mouseKeyboard) {
+			if (Input.GetMouseButtonDown (0)) {
+				WeaponScript.Weapon theWeapon = playerInventory.getWeapon ();
+				if (playerInventory.GetWeaponAmmo () > 0) {
+					if (theWeapon == WeaponScript.Weapon.Melee) {
+						StartCoroutine(MeleeAttack ());
+					} else if (theWeapon == WeaponScript.Weapon.Grenade) {
+						StartCoroutine (GrenadeThrow ());
+					} else if (theWeapon == WeaponScript.Weapon.Gun) {
+						Fire ();
+					} else if (theWeapon == WeaponScript.Weapon.Barricade) {
+						DropBarricade ();
+					} else
+						Debug.Log ("No Weapon");
+				}
+				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.isDynamicInventory ()) {
+					playerInventory.NextWeapon ();
+				}
+					if (!playerInventory.isMelee ())
+						playerInventory.ModAmmo (-1);
+				}
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				playerInventory.PrevWeapon ();
+			} else if (Input.GetKeyDown (KeyCode.E)) {
+				playerInventory.NextWeapon ();
+			} else if (Input.GetKeyDown (KeyCode.Space)) {
+				Vector3 newVelocity = GetComponent<Rigidbody> ().velocity;
+				newVelocity.y = jumpHeight;
+				GetComponent<Rigidbody> ().velocity = newVelocity;
+			} else if (Input.GetKeyDown (KeyCode.R)) {
+				SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+			}
+			MovePlayer ();
+			}
 	}
+
 
 	void OnCollisionEnter(Collision col){
 		if (col.collider.tag == "Zombie") {
@@ -169,10 +163,10 @@ public class PlayerControllerSS : MonoBehaviour
 	void Fire()
 	{
 		// Create the Bullet from the Bullet Prefab
-		var bullet = (GameObject)Instantiate(
-			bulletPrefab,
-			projectileSpawn.position,
-			projectileSpawn.rotation);
+		GameObject bullet = Instantiate(
+			playerInventory.GetProjectilePrefab("Bullet"),
+			playerInventory.GetProjectileSpawn("Gun").position,
+			playerInventory.GetProjectileSpawn("Gun").rotation);
 
 		// Add velocity to the bullet
 		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 100;
@@ -184,20 +178,48 @@ public class PlayerControllerSS : MonoBehaviour
 	IEnumerator GrenadeThrow()
 	{
 		// Hide player-held grenade
-		heldGrenade.SetActive (false);
+		playerInventory.ShowHideWeapon();
 		// Initiate and throw
-		GameObject grenade = Instantiate (grenadePrefab, projectileSpawn.position, projectileSpawn.rotation);
+		GameObject grenade = Instantiate(
+			playerInventory.GetProjectilePrefab("Grenade"),
+			playerInventory.GetProjectileSpawn("Grenade").position,
+			playerInventory.GetProjectileSpawn("Grenade").rotation);
 		grenade.GetComponent<Rigidbody> ().velocity = grenade.transform.forward * throwForce;
+		Vector3 randomTorque = new Vector3 (Random.Range (0, 15), Random.Range (0, 15), Random.Range (0, 15));
+		grenade.GetComponent<Rigidbody> ().AddTorque(randomTorque * throwForce);
 		grenade.transform.localScale = this.transform.localScale * 10;
 		yield return new WaitForSeconds(0.05f);
 		// Show player-held grenade again
-		heldGrenade.SetActive (true);
+		playerInventory.ShowHideWeapon();
+	}
+
+	IEnumerator MeleeAttack(){
+		Animator anim = transform.Find ("heldMelee").GetComponentInChildren<Animator> (true);
+		anim.SetBool ("isAttacking", true);
+		yield return new WaitForSeconds(0.5f);
+		anim.SetBool ("isAttacking", false);
 	}
 
 	void DropBarricade(){
 		// Create the Barricade from the Barricade Prefab
 		Instantiate(
-			barricadePrefab, barricadeSpawn.position, barricadeSpawn.rotation);
-		this.GetComponent<BasicInventory> ().ChangeWeapon (false);
+			playerInventory.GetProjectilePrefab("Barricade"),
+			playerInventory.GetProjectileSpawn("Barricade").position,
+			playerInventory.GetProjectileSpawn("Barricade").rotation);
+	}
+
+
+
+	void MovePlayer(){
+		if (Input.GetAxis ("Mouse Y") != 0) {
+			Vector3 newRotation = transform.localEulerAngles;
+			newRotation.x = transform.localEulerAngles.x - (Input.GetAxis ("Mouse Y") * rotationSpeed * Time.deltaTime);
+			newRotation.x = Mathf.Clamp (((newRotation.x + 540) % 360) - 180, -60, 60);
+			transform.localEulerAngles = newRotation;
+		}
+		if(Input.GetAxis("Mouse X") != 0){
+			transform.eulerAngles += Vector3.up * Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+		}
+		GetComponent<Rigidbody> ().MovePosition (transform.position + transform.forward * moveSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
 	}
 }

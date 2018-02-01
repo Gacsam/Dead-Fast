@@ -4,32 +4,36 @@ using UnityEngine;
 
 public class SplitScreen : MonoBehaviour {
 
-	public int playerAmount = 2;
+	public int playerAmount = 4;
 	public GameObject player;
 
-	// Use this for initialization
-	void Start () {
+	void OnLevelWasLoaded(){
+		Init ();
+	}
+
+	void Init () {
 		GameObject currentCharacter = Instantiate (player, new Vector3(0, 1, 0), Quaternion.Euler (0, -90, 0));
 		Camera currentCamera = currentCharacter.GetComponentInChildren<Camera> ();
 		currentCharacter.name = "Player 1";
 		currentCharacter.gameObject.tag = "Character";
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (1);
-		// Remember to get rid of split-screen audio-listeners
 		if (playerAmount != 1) {
 			switch (playerAmount) {
 			case 2:
 				currentCamera.rect = new Rect (0, .5f, 1, .5f);
-				currentCamera.cullingMask =currentCamera.cullingMask ^ (1 << 9);
-				currentCharacter.transform.position = new Vector3 (25, 1, 0);
-				currentCharacter = Instantiate (player, new Vector3 (-25, 1, 0), Quaternion.Euler (0, 90, 0));
-//				currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
+				currentCamera.cullingMask = currentCamera.cullingMask ^ (1 << 8);
+				SetLayerRecursively (currentCharacter.transform.Find ("PlayerAlpha").gameObject, 8);
+				currentCharacter.transform.position = new Vector3 (20, 1, 0);
+				currentCharacter = Instantiate (player, new Vector3 (-20, 1, 0), Quaternion.Euler (0, 90, 0));
+				currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 				currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (2);
 				currentCharacter.name = "Player 2";
 				currentCharacter.gameObject.tag = "Character";
 				currentCamera = currentCharacter.GetComponentInChildren<Camera> ();
 				currentCamera.rect = new Rect (0, 0, 1, .5f);
-				currentCamera.cullingMask = currentCamera.cullingMask ^ (1 << 8);
+				currentCamera.cullingMask = currentCamera.cullingMask ^ (1 << 9);
+				SetLayerRecursively (currentCharacter.transform.Find ("PlayerAlpha").gameObject, 9);
 				Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 				break;
 			case 4:
@@ -57,6 +61,13 @@ public class SplitScreen : MonoBehaviour {
 			default:
 				return;
 			}
+		}
+	}
+
+	public static void SetLayerRecursively(GameObject go, int layerNumber) {
+		if (go == null) return;
+		foreach (Transform trans in go.GetComponentsInChildren<Transform>(true)) {
+			trans.gameObject.layer = layerNumber;
 		}
 	}
 }

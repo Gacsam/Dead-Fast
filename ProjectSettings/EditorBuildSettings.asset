@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Code/LAN-only/LANTesting.unity
     guid: b9e21e0ddd727eb40ae2bd50c1da19e6
-  - enabled: 1
-    path: Assets/UIScene 1.unity
+  - enabled: 0
+    path: 
     guid: abf4cf4b4a96c7f4791915d83e92dcdb
   - enabled: 1
-    path: Assets/Code/SS-only/SSLevel.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 602f43ce25cb7054a9754f54cce353ce
+  - enabled: 0
+    path: 
     guid: cf9f1df4e3ba2c54b8a149612f6c081d
+  - enabled: 1
+    path: Assets/Scenes/SSLevel.unity
+    guid: 751c9127760164546a940410691729c8

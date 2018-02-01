@@ -8,7 +8,7 @@ TagManager:
   - Zombie
   - UI
   - Character
-  - Bullet
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2166216279
     locked: 0
