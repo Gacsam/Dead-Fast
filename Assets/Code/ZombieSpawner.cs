@@ -21,6 +21,14 @@ public class ZombieSpawner : MonoBehaviour {
 				return;
 			} else
 				return;
+		} else if (GameObject.FindGameObjectsWithTag ("Zombie").Length > zombieLimit) {
+			Destroy (GameObject.FindGameObjectWithTag ("Zombie"));
+		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			zombieLimit -= 1;
+		}else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			zombieLimit += 1;
 		}
 	}
 

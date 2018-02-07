@@ -23,9 +23,9 @@ public class ZombieFarmChase : MonoBehaviour {
 	private NavMeshAgent zombieGPS;
 	private GameObject zombieTarget;
 	private List<GameObject> existingBait;
-	private bool wanderingSearching = false;
 	private float searchCountdown;
 	private Vector3 lastSeenPosition;
+	private bool zombieCanWander = true;
 
 	void Start() {
 		zombieGPS = this.GetComponent<NavMeshAgent> ();
@@ -46,11 +46,8 @@ public class ZombieFarmChase : MonoBehaviour {
 					zombieState = States.Search;
 					lastSeenPosition = zombieGPS.destination;
 					RandomiseWander (lastSeenPosition);
+					searchCountdown = searchTime;
 				}
-			}
-		} else if (zombieState == States.Search) {
-			if(wanderingSearching){
-				RandomiseWander (lastSeenPosition);
 			}
 		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 1) {
 			lastSeenPosition = zombieGPS.destination;
@@ -58,12 +55,17 @@ public class ZombieFarmChase : MonoBehaviour {
 			zombieState = States.Search;
 			searchCountdown = searchTime;
 			RandomiseWander (lastSeenPosition);
-		} else if (zombieState == States.Wander && zombieGPS.remainingDistance <= 1) {
+		} else if (zombieState == States.Search) {
+			if (zombieGPS.remainingDistance <= 1) {
+				RandomiseWander (lastSeenPosition);
+				if (searchCountdown <= 0) {
+					zombieState = States.Wander;
+				}
+			}
+			searchCountdown -= Time.deltaTime;
+		} else if (zombieCanWander && zombieState == States.Wander && zombieGPS.remainingDistance <= 1) {
 			RandomiseWander (this.transform.position);
-		}
-
-		if (wanderingSearching && zombieGPS.remainingDistance <= 1) {
-			wanderingSearching = false;
+			Debug.Log ("wowowowow");
 		}
 
 		// Check if not already following a bait
@@ -80,6 +82,10 @@ public class ZombieFarmChase : MonoBehaviour {
 				}
 			}
 		}
+
+		if (Input.GetKeyDown (KeyCode.Y))
+			zombieCanWander = !zombieCanWander;
+		Debug.Log (zombieState.ToString() + zombieCanWander.ToString());
 	}
 		
 	bool RandomPoint(Vector3 center, float range, out Vector3 result) {
@@ -105,14 +111,12 @@ public class ZombieFarmChase : MonoBehaviour {
 		}
 		if (RandomPoint (aroundPosition, theRange, out point)) {
 			zombieGPS.destination = point;
-			wanderingSearching = true;
 		}
 	}
 
 	public void baitedZombie(Vector3 baitLocation){
 		// If not following a chicken or something
 		if (!(zombieState == States.Follow)) {
-			wanderingSearching = false;
 			if (Vector3.Distance (this.transform.position, baitLocation) < maximumNoiseDistance) {
 				zombieState = States.Noise;
 				// Set the agent's new destination to the player's position

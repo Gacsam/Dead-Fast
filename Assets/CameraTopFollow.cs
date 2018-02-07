@@ -10,13 +10,11 @@ public class CameraTopFollow : MonoBehaviour {
 	[SerializeField]
 	private float topDownScale= 2;
 	private GameObject[] thePlayers;
-	private Camera theCamera;
 	private Transform lookAt;
 	private bool isTopDown;
 
 	// Use this for initialization
 	void Start () {
-		theCamera = this.GetComponent<Camera> ();
 		lookAt = GameObject.Find ("CameraFollow").transform;
 
 		GameObject currentCharacter = Instantiate (playerPrefab, new Vector3(20, 1, 0), Quaternion.Euler (0, -90, 0));
@@ -33,11 +31,11 @@ public class CameraTopFollow : MonoBehaviour {
 		currentCharacter.gameObject.tag = "Player";
 		thePlayers = GameObject.FindGameObjectsWithTag ("Player");
 		Material playerTwoMaterial = new Material(currentCharacter.GetComponentInChildren<Projector> ().material);
-		playerTwoMaterial.color = Color.blue;
+		playerTwoMaterial.color = Color.yellow;
 		currentCharacter.GetComponentInChildren<Projector> ().material = playerTwoMaterial;
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Vector3 playerDistance = (thePlayers [0].transform.position - thePlayers [1].transform.position) / 2;

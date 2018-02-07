@@ -57,15 +57,17 @@ public class PlayerControllerSS : MonoBehaviour
 					if (!playerInventory.isMelee ())
 						playerInventory.ModAmmo (-1);
 				}
-				float rotateY = gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
-				float moveX = gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
-				float moveY = gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
-				Vector3 rbMove = new Vector3 (moveX, 0, moveY);
-//				GetComponent<Rigidbody> ().MovePosition(transform.position + rbMove * moveSpeed * Time.deltaTime);
-				transform.LookAt(transform.position + rbMove);
-				transform.eulerAngles += new Vector3 (0, rotateY, 0);
-				transform.Translate (moveY, 0, moveX);
+				float rotateY = this.gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
+				float moveX = this.gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
+				float moveY = this.gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
 
+				// Rotate towards for gamepad, needs testing
+//				Vector3 rbMove = new Vector3 (moveX, 0, moveY);
+//				if(rbMove != Vector3.zero) 
+//					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rbMove.normalized), 0.2f);
+
+				transform.RotateAround (transform.position, Vector3.right, rotateY * rotationSpeed);
+				transform.Translate (moveY, 0, moveX);
 				if (gamepad.GetButtonDown ("LB")) {
 					playerInventory.PrevWeapon ();
 				} else if (gamepad.GetButtonDown ("RB")) {
@@ -173,6 +175,9 @@ public class PlayerControllerSS : MonoBehaviour
 	void MovePlayer(){
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		rbMove = transform.TransformDirection (rbMove);
-		GetComponent<Rigidbody> ().MovePosition(transform.position + rbMove * moveSpeed * Time.deltaTime);
+		GetComponent<Rigidbody> ().MovePosition(this.transform.position + rbMove * moveSpeed * Time.deltaTime);
+		if (rbMove != Vector3.zero) {
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove.normalized), 0.1f);
+		}
 	}
 }
