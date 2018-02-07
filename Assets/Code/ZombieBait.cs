@@ -7,12 +7,15 @@ public class ZombieBait : MonoBehaviour {
 
 	// To be attached to player
 	Vector3 playerStuckPosition;
+	public enum BaitType{Firework, Grenade, Chicken};
+	public BaitType thisBait = BaitType.Grenade;
 	public float timeTrapped = 0;
 	public float baitLife = 1;
+	public int baitDistance = 15;
 
 	void Start(){
 		Rigidbody currentRigidbody = gameObject.GetComponent<Rigidbody> ();
-		switch (gameObject.tag) {
+		switch (thisBait.ToString()) {
 		case "Firework":
 			baitLife = 3;
 			currentRigidbody.drag = 0.1f;
@@ -25,6 +28,8 @@ public class ZombieBait : MonoBehaviour {
 			baitLife = 1;
 			break;
 		}
+
+
 	}
 
 	// On walking into a trap
@@ -53,15 +58,16 @@ public class ZombieBait : MonoBehaviour {
 			newPosition = hit.position;
 		}
 		// Loop through every zombie
-		foreach(GameObject zombie in zombies){
-			// Get the individual zombie agent
-			zombie.GetComponent<ZombieNavmeshChase>().baitedZombie(newPosition);
+		foreach (GameObject zombie in zombies) {
+			// Check if zombie is close enough
+			if (Vector3.Distance (this.transform.position, zombie.transform.position) < baitDistance) {
+				zombie.GetComponent<ZombieFarmChase> ().baitedZombie (newPosition);
+			}
 		}
 	}
 
 	// Check for bullet shoot
 	void Update(){
-
 		// Explode firework
 		if (baitLife > 0) {
 			baitLife -= Time.deltaTime;

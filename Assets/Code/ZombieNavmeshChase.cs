@@ -60,7 +60,7 @@ public class ZombieNavmeshChase : MonoBehaviour {
 		runningCoroutine = StartCoroutine(RandomiseWander (this.transform.position));
 		StopCoroutine (runningCoroutine);
 		if(players == null)
-			players = GameObject.FindGameObjectsWithTag("Character");
+			players = GameObject.FindGameObjectsWithTag("Player");
 	}
 
 	void Update() {

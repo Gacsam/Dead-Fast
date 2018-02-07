@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 54552025914977732}
   - component: {fileID: 195054961579067924}
   - component: {fileID: 136378813441306608}
-  - component: {fileID: 114355412751380442}
+  - component: {fileID: 114440723345191768}
   m_Layer: 0
   m_Name: ZombiePlaceholder
   m_TagString: Zombie
@@ -396,7 +396,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &114355412751380442
+--- !u!114 &114440723345191768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -404,17 +404,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1686003087903782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dca958f65d49c643a679f9f0a16eb6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dc3b801fa305e3438ca4c1d904c4b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRange: 5
-  inHowManyPatrolChance: 50
+  wanderRange: 10
+  searchRange: 5
   angleOfView: 90
-  distanceToNotice: 5
-  wanderSpeed: 1.5
+  distanceToNotice: 10
+  wanderSpeed: 1
   maximumNoiseDistance: 25
-  lifeHits: 3
-  maximumIdle: 3
   searchTime: 10
   zombieState: 0
 --- !u!136 &136378813441306608

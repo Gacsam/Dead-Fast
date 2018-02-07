@@ -86,7 +86,6 @@ public class advancedInventory : MonoBehaviour {
 
 	public void Start(){
 		Init ();
-		crosshairUI = this.GetComponentInChildren<Image> (true).gameObject;
 	}
 
 	public WeaponScript.Weapon getWeapon(){

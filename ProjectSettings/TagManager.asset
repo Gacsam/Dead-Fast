@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Grenade
   - Zombie
   - UI
-  - Character
   - Terrain
+  - Bait
+  - Bullet
+  - Character
+  - Grenade
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - 
   - Player 1 Ignore
   - Player 2 Ignore
-  - 
+  - Terrain
   - 
   - 
   - 

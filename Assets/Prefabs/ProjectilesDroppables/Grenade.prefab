@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 136840541119280154}
   m_Layer: 0
   m_Name: Grenade
-  m_TagString: Grenade
+  m_TagString: Bait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bea78c25d341e4f982055151d11f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisBait: 1
   timeTrapped: 0
   baitLife: 1000
 --- !u!136 &136840541119280154

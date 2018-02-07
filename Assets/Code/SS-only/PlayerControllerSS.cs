@@ -9,8 +9,6 @@ public class PlayerControllerSS : MonoBehaviour
 	public int gamepadIndex;
 	private x360_Gamepad gamepad;
 
-	public int playerHealth = 5;
-	private bool invincibilityFrame;
 	public int throwForce = 25;
 	private advancedInventory playerInventory;
 	public int rotationSpeed = 50;
@@ -31,15 +29,6 @@ public class PlayerControllerSS : MonoBehaviour
 
 	void Start(){
 		playerInventory = this.GetComponent<advancedInventory> ();
-		int playerLayer = 9;
-		switch (this.name) {
-		case "Player 2":
-			playerLayer = 8;
-			break;
-		default:
-			break;
-		}
-		playerInventory.SetLayers (playerLayer);
 	}
 
 	void Update ()
@@ -69,12 +58,12 @@ public class PlayerControllerSS : MonoBehaviour
 						playerInventory.ModAmmo (-1);
 				}
 				float rotateY = gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
-				float rotateZ = gamepad.GetStick_R ().Y * Time.deltaTime * 150.0f;
 				float moveX = gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
 				float moveY = gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
-				Mathf.Clamp (rotateZ + transform.rotation.eulerAngles.x, -89, 89);
-
-				transform.eulerAngles += new Vector3 (-rotateZ, rotateY, 0);
+				Vector3 rbMove = new Vector3 (moveX, 0, moveY);
+//				GetComponent<Rigidbody> ().MovePosition(transform.position + rbMove * moveSpeed * Time.deltaTime);
+				transform.LookAt(transform.position + rbMove);
+				transform.eulerAngles += new Vector3 (0, rotateY, 0);
 				transform.Translate (moveY, 0, moveX);
 
 				if (gamepad.GetButtonDown ("LB")) {
@@ -82,7 +71,7 @@ public class PlayerControllerSS : MonoBehaviour
 				} else if (gamepad.GetButtonDown ("RB")) {
 					playerInventory.NextWeapon ();
 				}
-				if (gamepad.GetButtonDown ("Guide")) {
+				if (gamepad.GetButtonDown ("Start")) {
 					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 				}
 				gamepad.Refresh ();
@@ -123,33 +112,6 @@ public class PlayerControllerSS : MonoBehaviour
 			}
 			MovePlayer ();
 			}
-	}
-
-
-	void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "Zombie") {
-			// Invincibility frame based on https://answers.unity.com/questions/680668/making-a-player-invulnerable-for-a-few-seconds-get.html
-			if (!invincibilityFrame) {
-				// Calculate Angle Between the collision point and the player
-				Vector3 dir = col.contacts [0].point - transform.position;
-				// We then get the opposite (-Vector3) and normalize it
-				dir = -dir.normalized;
-				// And finally we add force in the direction of dir and multiply it by force. 
-				// This will push back the player
-				GetComponent<Rigidbody> ().AddForce (dir * 125);
-				playerHealth -= 1;
-				playerHit ();
-				if (playerHealth <= 0) {
-					Destroy (this.gameObject);
-				}
-			}
-		}
-	}
-
-	IEnumerator playerHit(){
-		invincibilityFrame = true;
-		yield return new WaitForSeconds(1);
-		invincibilityFrame = false;
 	}
 
 	void TestRumble()
@@ -208,18 +170,9 @@ public class PlayerControllerSS : MonoBehaviour
 			playerInventory.GetProjectileSpawn("Barricade").rotation);
 	}
 
-
-
 	void MovePlayer(){
-		if (Input.GetAxis ("Mouse Y") != 0) {
-			Vector3 newRotation = transform.localEulerAngles;
-			newRotation.x = transform.localEulerAngles.x - (Input.GetAxis ("Mouse Y") * rotationSpeed * Time.deltaTime);
-			newRotation.x = Mathf.Clamp (((newRotation.x + 540) % 360) - 180, -60, 60);
-			transform.localEulerAngles = newRotation;
-		}
-		if(Input.GetAxis("Mouse X") != 0){
-			transform.eulerAngles += Vector3.up * Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-		}
-		GetComponent<Rigidbody> ().MovePosition (transform.position + transform.forward * moveSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
+		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		rbMove = transform.TransformDirection (rbMove);
+		GetComponent<Rigidbody> ().MovePosition(transform.position + rbMove * moveSpeed * Time.deltaTime);
 	}
 }
