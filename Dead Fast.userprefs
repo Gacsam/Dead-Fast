@@ -1,22 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\ZombieSpawner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ZombieFarmChase.cs">
     <Files>
-      <File FileName="Assets\Code\SS-only\SplitScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraTopFollow.cs" Line="64" Column="32" />
-      <File FileName="Assets\ZombieFarmChase.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\ZombieSpawner.cs" Line="30" Column="45" />
+      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="144" Column="4" />
+      <File FileName="Assets\AllAssets\UI\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\PigControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZombieFarmChase.cs" Line="131" Column="84" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="66" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="65" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="64" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="63" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="62" column="1" />
-      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\Code\ZombieBait.cs" line="61" column="1" />
+      <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="40" column="1" />
+      <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="77" column="1" />
+      <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="140" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

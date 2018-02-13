@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponScript {
-	public enum Weapon{Gun, Grenade, Firework, Melee, Trap, Barricade};
+	public enum Weapon{Grenade, Firework, Barricade, Pig};
 
 	[SerializeField]
 	private Weapon thisWeapon;

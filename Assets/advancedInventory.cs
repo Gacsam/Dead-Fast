@@ -11,8 +11,7 @@ public class advancedInventory : MonoBehaviour {
 	[SerializeField]
 	private List<GameObject> projectilePrefabs;
 	[SerializeField]
-	private bool dynamicInventory = true;
-	private GameObject crosshairUI;
+	public bool dynamicInventory = true;
 	private int thisLayer;
 
 	// Inventory system
@@ -51,33 +50,31 @@ public class advancedInventory : MonoBehaviour {
 		heldWeapons.Add(newHeldWeapon);
 		newHeldWeapon.layer = thisLayer;
 		newHeldWeapon.SetActive (false);
-		if (theInventory [newWeaponIndex].GetWeaponType () != WeaponScript.Weapon.Melee) {
-			projectileSpawn.Add (newHeldWeapon.transform.Find ("spawn" + theInventory [newWeaponIndex].GetWeaponType ()).transform);
-		} else {
-			projectileSpawn.Add (new GameObject().transform);
-		}
+
+		projectileSpawn.Add (newHeldWeapon.transform.Find ("spawn" + theInventory [newWeaponIndex].GetWeaponType ()).transform);
 	}
 
 	// Use this for initialization
 	public void Init () {
 		// Create a new empty weapon
 		WeaponScript newGrenade = new WeaponScript();
-		WeaponScript newGun = new WeaponScript();
 		WeaponScript newBarrier = new WeaponScript();
+		WeaponScript newPig = new WeaponScript();
 		// Set weapon to 5 grenades
 		newGrenade.SetWeaponType(WeaponScript.Weapon.Grenade);
 		newGrenade.SetAmmo (5);
 		WeaponPickup (newGrenade);
 		ShowHideWeapon ();
-		// Set weapon to gun with 3 ammo
-		newGun.SetWeaponType(WeaponScript.Weapon.Gun);
-		newGun.SetAmmo (3);
-		WeaponPickup (newGun);
+		// Set weapon to 1 pigs
+		newPig.SetWeaponType(WeaponScript.Weapon.Pig);
+		newPig.SetAmmo (2);
+		WeaponPickup (newPig);
+		ShowHideWeapon ();
 		// Set weapon to 1 barricade
 		newBarrier.SetWeaponType(WeaponScript.Weapon.Barricade);
 		newBarrier.SetAmmo (1);
 		WeaponPickup (newBarrier);
-		inventoryIndex = 0;
+		ShowHideWeapon ();
 	}
 
 	public int GetWeaponAmmo(){
@@ -94,13 +91,6 @@ public class advancedInventory : MonoBehaviour {
 
 	public void ShowHideWeapon(){
 		heldWeapons[inventoryIndex].SetActive (!heldWeapons[inventoryIndex].activeSelf);
-		if (crosshairUI != null) {
-			if (theInventory [inventoryIndex].GetWeaponType () == WeaponScript.Weapon.Barricade) {
-				crosshairUI.SetActive (false);
-			} else {
-				crosshairUI.SetActive (true);
-			}
-		}
 	}
 
 	public int GetWeaponIndex(){
@@ -165,16 +155,5 @@ public class advancedInventory : MonoBehaviour {
 
 	public void ModAmmo(int changeAmmo){
 		theInventory [inventoryIndex].ModAmmo (changeAmmo);
-	}
-
-	public bool isDynamicInventory(){
-		return dynamicInventory;
-	}
-
-
-	public bool isMelee(){
-		if (theInventory [inventoryIndex].GetWeaponType() == WeaponScript.Weapon.Melee)
-			return true;
-		return false;
 	}
 }

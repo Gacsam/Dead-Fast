@@ -13,6 +13,10 @@ public class CameraTopFollow : MonoBehaviour {
 	private Transform lookAt;
 	private bool isTopDown;
 
+	public void ChangePlayerFocus(GameObject thePlayer, int playerIndex){
+		thePlayers [playerIndex] = thePlayer;
+	}
+
 	// Use this for initialization
 	void Start () {
 		lookAt = GameObject.Find ("CameraFollow").transform;

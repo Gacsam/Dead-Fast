@@ -22,7 +22,6 @@ public class ZombieFarmChase : MonoBehaviour {
 	public States zombieState;
 	private NavMeshAgent zombieGPS;
 	private GameObject zombieTarget;
-	private List<GameObject> existingBait;
 	private float searchCountdown;
 	private Vector3 lastSeenPosition;
 	private bool zombieCanWander = true;
@@ -32,22 +31,23 @@ public class ZombieFarmChase : MonoBehaviour {
 		zombieGPS.speed = wanderSpeed;
 		zombieState = States.Wander;
 		RandomiseWander (this.transform.position);
-		existingBait = new List<GameObject> ();
-		zombieGPS.stoppingDistance = 0.75f;
+		zombieGPS.stoppingDistance = 0.5f;
 	}
 
+		
 	void Update() {
 		// In order of importance: follow, search, noise, wander
 		if (zombieState == States.Follow) {
-			if (!zombieTarget) {
 				if (LineOfSight (zombieTarget)) {
+					zombieGPS.stoppingDistance = 0f;
 					zombieGPS.destination = zombieTarget.transform.position;
 				} else {
+					zombieTarget = null;
 					zombieState = States.Search;
+					zombieGPS.stoppingDistance = 0.5f;
 					lastSeenPosition = zombieGPS.destination;
 					RandomiseWander (lastSeenPosition);
 					searchCountdown = searchTime;
-				}
 			}
 		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 1) {
 			lastSeenPosition = zombieGPS.destination;
@@ -65,15 +65,15 @@ public class ZombieFarmChase : MonoBehaviour {
 			searchCountdown -= Time.deltaTime;
 		} else if (zombieCanWander && zombieState == States.Wander && zombieGPS.remainingDistance <= 1) {
 			RandomiseWander (this.transform.position);
-			Debug.Log ("wowowowow");
 		}
 
 		// Check if not already following a bait
 		if (!(zombieState == States.Follow)) {
-			if (existingBait.Count > 0) {
-				foreach (GameObject currentBait in existingBait) {
-					if (Vector3.Distance (this.transform.position, currentBait.transform.position) > distanceToNotice) {
+			if (GameObject.FindGameObjectsWithTag("Bait").Length > 0) {
+				foreach (GameObject currentBait in GameObject.FindGameObjectsWithTag("Bait")) {
+					if (Vector3.Distance (this.transform.position, currentBait.transform.position) <= distanceToNotice) {
 						if (LineOfSight (currentBait)) {
+							Debug.Log ("Target locked");
 							zombieTarget = currentBait;
 							zombieGPS.destination = currentBait.transform.position;
 							zombieState = States.Follow;
@@ -85,7 +85,6 @@ public class ZombieFarmChase : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Y))
 			zombieCanWander = !zombieCanWander;
-		Debug.Log (zombieState.ToString() + zombieCanWander.ToString());
 	}
 		
 	bool RandomPoint(Vector3 center, float range, out Vector3 result) {
@@ -127,12 +126,13 @@ public class ZombieFarmChase : MonoBehaviour {
 	}
 
 	bool LineOfSight (GameObject target) {
-		RaycastHit hit;
-		if (Vector3.Angle(target.transform.position - transform.position, transform.forward) <= angleOfView &&
-			Physics.Raycast(transform.position, target.transform.position, out hit) &&
-			(hit.collider.transform == target || hit.collider.transform.parent == target)) {
-			Debug.DrawRay (transform.position, target.transform.position);
-			return true;
+		if (target) {
+			RaycastHit hit;
+			if (Physics.Linecast (transform.position, target.transform.position, out hit)) {
+				if (hit.collider.gameObject.tag == target.tag) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}

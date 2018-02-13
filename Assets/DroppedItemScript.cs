@@ -6,7 +6,7 @@ public class DroppedItemScript : MonoBehaviour {
 
 	private WeaponScript thisWeapon;
 	[SerializeField]
-	private WeaponScript.Weapon theWeapon =  WeaponScript.Weapon.Melee;
+	private WeaponScript.Weapon theWeapon =  WeaponScript.Weapon.Grenade;
 	[SerializeField]
 	private int ammo = 1;
 

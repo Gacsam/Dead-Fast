@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControllerSS : MonoBehaviour
 {
-	private Camera cam;
 	public int gamepadIndex;
 	private x360_Gamepad gamepad;
 
@@ -16,10 +15,10 @@ public class PlayerControllerSS : MonoBehaviour
 	public int jumpHeight = 3;
 
 	[Tooltip("Are you using keyboard/mouse?")]
-	public bool mouseKeyboard = true;
+	public bool mouseKeyboard = false;
 
 	[Tooltip("Are you using a gamepad?")]
-	public bool gamepadPlugged = false;
+	public bool gamepadPlugged = true;
 	
 
 	public void SetGamepadIndex(int newIndex){
@@ -39,35 +38,28 @@ public class PlayerControllerSS : MonoBehaviour
 				if (gamepad.GetTriggerTap_R ()) {
 					WeaponScript.Weapon theWeapon = playerInventory.getWeapon ();
 					if (playerInventory.GetWeaponAmmo () > 0) {
-						if (theWeapon == WeaponScript.Weapon.Melee) {
-							MeleeAttack ();
-						} else if (theWeapon == WeaponScript.Weapon.Grenade) {
+						if (theWeapon == WeaponScript.Weapon.Grenade) {
 							StartCoroutine (GrenadeThrow ());
-						} else if (theWeapon == WeaponScript.Weapon.Gun) {
-							Fire ();
 						} else if (theWeapon == WeaponScript.Weapon.Barricade) {
 							DropBarricade ();
+						} else if (theWeapon == WeaponScript.Weapon.Pig) {
+							PlayPig ();
 						} else
 							Debug.Log ("No Weapon");
 					}
 				}
-				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.isDynamicInventory ()) {
+				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.dynamicInventory) {
 					playerInventory.NextWeapon ();
-				
-					if (!playerInventory.isMelee ())
-						playerInventory.ModAmmo (-1);
 				}
-				float rotateY = this.gamepad.GetStick_R ().X * Time.deltaTime * 150.0f;
-				float moveX = this.gamepad.GetStick_L ().Y * Time.deltaTime * 3.0f;
-				float moveY = this.gamepad.GetStick_L ().X * Time.deltaTime * 3.0f;
 
-				// Rotate towards for gamepad, needs testing
-//				Vector3 rbMove = new Vector3 (moveX, 0, moveY);
-//				if(rbMove != Vector3.zero) 
-//					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rbMove.normalized), 0.2f);
+				Vector3 rbMove = new Vector3 (this.gamepad.GetStick_L ().X, 0, this.gamepad.GetStick_L ().Y);
+				if (rbMove != Vector3.zero) {
+					rbMove = Camera.main.transform.TransformDirection (rbMove);
+					rbMove.y = 0;
+					GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
+				}
 
-				transform.RotateAround (transform.position, Vector3.right, rotateY * rotationSpeed);
-				transform.Translate (moveY, 0, moveX);
 				if (gamepad.GetButtonDown ("LB")) {
 					playerInventory.PrevWeapon ();
 				} else if (gamepad.GetButtonDown ("RB")) {
@@ -81,39 +73,15 @@ public class PlayerControllerSS : MonoBehaviour
 		}
 
 		if (mouseKeyboard) {
-			if (Input.GetMouseButtonDown (0)) {
-				WeaponScript.Weapon theWeapon = playerInventory.getWeapon ();
-				if (playerInventory.GetWeaponAmmo () > 0) {
-					if (theWeapon == WeaponScript.Weapon.Melee) {
-						StartCoroutine(MeleeAttack ());
-					} else if (theWeapon == WeaponScript.Weapon.Grenade) {
-						StartCoroutine (GrenadeThrow ());
-					} else if (theWeapon == WeaponScript.Weapon.Gun) {
-						Fire ();
-					} else if (theWeapon == WeaponScript.Weapon.Barricade) {
-						DropBarricade ();
-					} else
-						Debug.Log ("No Weapon");
-				}
-				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.isDynamicInventory ()) {
-					playerInventory.NextWeapon ();
-				}
-					if (!playerInventory.isMelee ())
-						playerInventory.ModAmmo (-1);
-				}
-			if (Input.GetKeyDown (KeyCode.Q)) {
-				playerInventory.PrevWeapon ();
-			} else if (Input.GetKeyDown (KeyCode.E)) {
-				playerInventory.NextWeapon ();
-			} else if (Input.GetKeyDown (KeyCode.Space)) {
-				Vector3 newVelocity = GetComponent<Rigidbody> ().velocity;
-				newVelocity.y = jumpHeight;
-				GetComponent<Rigidbody> ().velocity = newVelocity;
-			} else if (Input.GetKeyDown (KeyCode.R)) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
-			}
 			MovePlayer ();
-			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.R)) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		} else if (Input.GetKeyDown (KeyCode.K)) {
+			mouseKeyboard = !mouseKeyboard;
+		}
+
 	}
 
 	void TestRumble()
@@ -121,22 +89,6 @@ public class PlayerControllerSS : MonoBehaviour
 		//                timer            power         fade
 		gamepad.AddRumble(1.0f, new Vector2(0.9f, 0.9f), 0.5f);
 		gamepad.AddRumble(2.5f, new Vector2(0.5f, 0.5f), 0.2f);
-	}
-
-
-	void Fire()
-	{
-		// Create the Bullet from the Bullet Prefab
-		GameObject bullet = Instantiate(
-			playerInventory.GetProjectilePrefab("Bullet"),
-			playerInventory.GetProjectileSpawn("Gun").position,
-			playerInventory.GetProjectileSpawn("Gun").rotation);
-
-		// Add velocity to the bullet
-		bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 100;
-
-		// Destroy the bullet after 2 seconds
-		Destroy(bullet, 2.0f);
 	}
 
 	IEnumerator GrenadeThrow()
@@ -157,12 +109,6 @@ public class PlayerControllerSS : MonoBehaviour
 		playerInventory.ShowHideWeapon();
 	}
 
-	IEnumerator MeleeAttack(){
-		Animator anim = transform.Find ("heldMelee").GetComponentInChildren<Animator> (true);
-		anim.SetBool ("isAttacking", true);
-		yield return new WaitForSeconds(0.5f);
-		anim.SetBool ("isAttacking", false);
-	}
 
 	void DropBarricade(){
 		// Create the Barricade from the Barricade Prefab
@@ -172,12 +118,56 @@ public class PlayerControllerSS : MonoBehaviour
 			playerInventory.GetProjectileSpawn("Barricade").rotation);
 	}
 
+	void PlayPig(){
+		GameObject pig = Instantiate (
+			                 playerInventory.GetProjectilePrefab ("Pig"),
+			                 playerInventory.GetProjectileSpawn ("Pig").position,
+			                 playerInventory.GetProjectileSpawn ("Pig").rotation);
+		pig.GetComponentInChildren<PigControl> ().StartCoroutine(pig.GetComponentInChildren<PigControl> ().TakeControl (gamepad, this.gameObject));
+		Projector theProjector = this.gameObject.GetComponentInChildren<Projector> ();
+		Projector newProjector = pig.transform.Find ("Projector").gameObject.AddComponent<Projector> ();
+		newProjector.material = theProjector.material;
+		newProjector.orthographic = theProjector.orthographic;
+		newProjector.orthographicSize = theProjector.orthographicSize;
+		newProjector.ignoreLayers = theProjector.ignoreLayers;
+		theProjector.enabled = false;
+		this.enabled = false;
+	}
+
 	void MovePlayer(){
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		rbMove = transform.TransformDirection (rbMove);
-		GetComponent<Rigidbody> ().MovePosition(this.transform.position + rbMove * moveSpeed * Time.deltaTime);
 		if (rbMove != Vector3.zero) {
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove.normalized), 0.1f);
+			rbMove = Camera.main.transform.TransformDirection (rbMove);
+			rbMove.y = 0;
+			GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			playerInventory.PrevWeapon ();
+		} else if (Input.GetKeyDown (KeyCode.E)) {
+			playerInventory.NextWeapon ();
+		} else if (Input.GetMouseButtonDown (0)) {
+			WeaponScript.Weapon theWeapon = playerInventory.getWeapon ();
+			if (playerInventory.GetWeaponAmmo () > 0) {
+				if (theWeapon == WeaponScript.Weapon.Grenade) {
+					StartCoroutine (GrenadeThrow ());
+				} else if (theWeapon == WeaponScript.Weapon.Barricade) {
+					DropBarricade ();
+				} else if (theWeapon == WeaponScript.Weapon.Pig) {
+					PlayPig ();
+				} else
+					Debug.Log ("No Weapon");
+			}
+			if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.dynamicInventory) {
+				playerInventory.NextWeapon ();
+			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			Vector3 newVelocity = GetComponent<Rigidbody> ().velocity;
+			newVelocity.y = jumpHeight;
+			GetComponent<Rigidbody> ().velocity = newVelocity;
 		}
 	}
 }

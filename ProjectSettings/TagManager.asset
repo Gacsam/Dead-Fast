@@ -8,9 +8,7 @@ TagManager:
   - UI
   - Terrain
   - Bait
-  - Bullet
-  - Character
-  - Grenade
+  - Droppable
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class ZombieBait : MonoBehaviour {
 
 	// To be attached to player
 	Vector3 playerStuckPosition;
-	public enum BaitType{Firework, Grenade, Chicken};
+	public enum BaitType{Firework, Grenade, Pig};
 	public BaitType thisBait = BaitType.Grenade;
 	public float timeTrapped = 0;
 	public float baitLife = 1;
@@ -49,7 +49,7 @@ public class ZombieBait : MonoBehaviour {
 		}
 	}
 
-	void setBaitLocation(Vector3 newPosition){
+	protected void setBaitLocation(Vector3 newPosition){
 		// Get all the existing zombies
 		GameObject[] zombies = GameObject.FindGameObjectsWithTag("Zombie");
 		// Find closest

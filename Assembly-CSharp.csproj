@@ -64,6 +64,7 @@
      <Compile Include="Assets\Code\ZombieNavmeshChase.cs" />
      <Compile Include="Assets\Code\ZombieSpawner.cs" />
      <Compile Include="Assets\DroppedItemScript.cs" />
+     <Compile Include="Assets\PigControl.cs" />
      <Compile Include="Assets\ZombieFarmChase.cs" />
      <Compile Include="Assets\advancedInventory.cs" />
      <None Include="Assets\Code\XInputDotNet\Docs.txt" />
