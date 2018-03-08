@@ -6,6 +6,7 @@ public class CameraTopFollow : MonoBehaviour {
 	[SerializeField]
 	private GameObject playerPrefab;
 	[SerializeField]
+	private Transform[] playerSpawns;
 	private float isometricScale = 1;
 	[SerializeField]
 	private float topDownScale= 2;
@@ -20,15 +21,23 @@ public class CameraTopFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lookAt = GameObject.Find ("CameraFollow").transform;
+		CreateTwoPlayers ();
+	}
 
-		GameObject currentCharacter = Instantiate (playerPrefab, new Vector3(20, 1, 0), Quaternion.Euler (0, -90, 0));
+	// Update is called once per frame
+	void Update () {
+//		MoveCamera ();
+	}
+
+	void CreateTwoPlayers(){
+		GameObject currentCharacter = Instantiate (playerPrefab, playerSpawns[0].position, playerSpawns[0].rotation);
 		currentCharacter.name = "Player 1";
 		currentCharacter.gameObject.tag = "Player";
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (1);
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 		currentCharacter.GetComponentInChildren<Projector> ().material.color = Color.red;
-		currentCharacter = Instantiate (playerPrefab, new Vector3 (-20, 1, 0), Quaternion.Euler (0, 90, 0));
+		currentCharacter = Instantiate (playerPrefab, playerSpawns[1].position, playerSpawns[1].rotation);
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (2);
 		currentCharacter.name = "Player 2";
@@ -40,8 +49,7 @@ public class CameraTopFollow : MonoBehaviour {
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void MoveCamera(){
 		Vector3 playerDistance = (thePlayers [0].transform.position - thePlayers [1].transform.position) / 2;
 		lookAt.position = thePlayers [0].transform.position - playerDistance;
 		float distance = Vector3.Distance (thePlayers [0].transform.position, thePlayers [1].transform.position) / 2;
@@ -58,9 +66,9 @@ public class CameraTopFollow : MonoBehaviour {
 			} else {
 				halfWay = Vector3.Cross (halfWay, Vector3.back);
 			}
-			float swap = playerDistance.x;
+			float swapCameraAngle = playerDistance.x;
 			playerDistance.x = playerDistance.z;
-			playerDistance.z = -swap;
+			playerDistance.z = -swapCameraAngle;
 			this.transform.position = playerDistance + halfWay.normalized * distance * isometricScale;
 			this.transform.LookAt (lookAt);
 		}

@@ -410,7 +410,7 @@ MonoBehaviour:
   wanderRange: 10
   searchRange: 5
   angleOfView: 90
-  distanceToNotice: 5
+  distanceToNotice: 10
   wanderSpeed: 1
   maximumNoiseDistance: 25
   searchTime: 10

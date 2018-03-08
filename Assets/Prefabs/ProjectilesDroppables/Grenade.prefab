@@ -25,10 +25,10 @@ GameObject:
   - component: {fileID: 136840541119280154}
   m_Layer: 0
   m_Name: Grenade
-  m_TagString: Droppable
+  m_TagString: Bait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1854680773113932
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4128859670526598
 Transform:

@@ -5,11 +5,8 @@ using UnityEngine.AI;
 
 public class ZombieBait : MonoBehaviour {
 
-	// To be attached to player
-	Vector3 playerStuckPosition;
 	public enum BaitType{Firework, Grenade, Pig};
 	public BaitType thisBait = BaitType.Grenade;
-	public float timeTrapped = 0;
 	public float baitLife = 1;
 	public int baitDistance = 15;
 
@@ -34,18 +31,11 @@ public class ZombieBait : MonoBehaviour {
 
 	// On walking into a trap
 	void OnCollisionEnter(Collision collidedObject){
-		// Firework explodes upon impact
-		if (gameObject.tag == "Firework") {
-			baitLife = 0;
+		if (collidedObject.gameObject.tag == "Zombie") {
+			Destroy (this.gameObject);
 		}
-		// Trap stops player from moving and calls zombies
-		else if (gameObject.tag == "Trap" && collidedObject.gameObject.tag == "Player") {
-			// PLAY SOUND AND ANIMATION UPON TRAPPING
-			// Call zombies, stop the player from moving
-			// GET PLAYER, TEMPORARILY DISABLE MOVEMENT
-			setBaitLocation(collidedObject.contacts[0].point);
-			playerStuckPosition = collidedObject.transform.position;
-			timeTrapped = 1;
+		if (thisBait == BaitType.Grenade) {
+			setBaitLocation (transform.position);
 		}
 	}
 
@@ -72,16 +62,8 @@ public class ZombieBait : MonoBehaviour {
 		if (baitLife > 0) {
 			baitLife -= Time.deltaTime;
 		} else {
-			setBaitLocation (transform.position);
 			Destroy (this.gameObject);
 			// PLAY ANIMATION AND SOUND
-		}
-
-		// BELOW TO BE ADDED TO THE PLAYER CODE
-		// Makes player "stuck" for timeTrapped
-		if (timeTrapped > 0) {
-			transform.position = playerStuckPosition;
-			timeTrapped -= Time.deltaTime;
 		}
 
 		// Upon shooting a gun

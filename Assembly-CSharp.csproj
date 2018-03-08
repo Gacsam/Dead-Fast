@@ -53,6 +53,7 @@
      <Compile Include="Assets\CameraTopFollow.cs" />
      <Compile Include="Assets\Code\BulletCollision.cs" />
      <Compile Include="Assets\Code\EnemyChase.cs" />
+     <Compile Include="Assets\Code\GameUI.cs" />
      <Compile Include="Assets\Code\LAN-only\PlayerControllerLAN.cs" />
      <Compile Include="Assets\Code\SS-only\Gamepad.cs" />
      <Compile Include="Assets\Code\SS-only\GamepadManager.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Code\ThrowGrenade.cs" />
      <Compile Include="Assets\Code\WeaponScript.cs" />
      <Compile Include="Assets\Code\ZombieBait.cs" />
+     <Compile Include="Assets\Code\ZombieCounter.cs" />
      <Compile Include="Assets\Code\ZombieNavmeshChase.cs" />
      <Compile Include="Assets\Code\ZombieSpawner.cs" />
      <Compile Include="Assets\DroppedItemScript.cs" />
@@ -74,6 +76,7 @@
      <None Include="Assets\ProjectorAdditiveTint.shader" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+     <None Include="Assets\AllAssets\Basic Materials\Translucent.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity 5.6.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

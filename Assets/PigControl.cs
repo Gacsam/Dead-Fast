@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PigControl : ZombieBait {
 
-	static CameraTopFollow cameraScript;
 	private x360_Gamepad gamepadController;
+	private float pigSpeed = 3;
 	[SerializeField]
 	static private float timeControlling = 15f;
 	[SerializeField]
-	private float rotationSpeed = 5;
 
 	private bool isControlled = true;
 	private bool didOink = false;
@@ -52,16 +51,11 @@ public class PigControl : ZombieBait {
 
 	void MovePlayer(){
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		rbMove = transform.TransformDirection (rbMove);
-		GetComponent<Rigidbody> ().MovePosition(this.transform.position + rbMove * 3 * Time.deltaTime);
 		if (rbMove != Vector3.zero) {
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove.normalized), 0.1f);
-		}
-
-		// Oink
-		if (Input.GetMouseButtonDown (0) && !didOink) {
-			setBaitLocation (this.transform.position);
-			didOink = true;
+			rbMove = Camera.main.transform.Find("CameraDirection").transform.InverseTransformDirection (rbMove);
+			rbMove.y = 0;
+			GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove.normalized * pigSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.75f);
 		}
 	}
 	
@@ -70,22 +64,27 @@ public class PigControl : ZombieBait {
 		if (isControlled) {
 			MovePlayer ();
 
+
+			// Oink
+			if (Input.GetMouseButtonDown (0) && !didOink) {
+				setBaitLocation (this.transform.position);
+				didOink = true;
+			}
+
 			if (gamepadController.IsConnected) {
 				if (gamepadController.GetTriggerTap_R () && !didOink) {
 					setBaitLocation (this.transform.position);
 					didOink = true;
 				}
-				float rotateY = this.gamepadController.GetStick_R ().X * Time.deltaTime * 150.0f;
-				float moveX = this.gamepadController.GetStick_L ().Y * Time.deltaTime * 3.0f;
-				float moveY = this.gamepadController.GetStick_L ().X * Time.deltaTime * 3.0f;
 
-				// Rotate towards for gamepad, needs testing
-				//				Vector3 rbMove = new Vector3 (moveX, 0, moveY);
-				//				if(rbMove != Vector3.zero) 
-				//					transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rbMove.normalized), 0.2f);
+				Vector3 rbMove = new Vector3 (this.gamepadController.GetStick_L ().X, 0, this.gamepadController.GetStick_L ().Y);
+				if (rbMove != Vector3.zero) {
+					rbMove = Camera.main.transform.Find("CameraDirection").transform.TransformDirection (rbMove);
+					rbMove.y = 0;
+					GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * pigSpeed * Time.deltaTime);
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
+				}
 
-				transform.RotateAround (transform.position, Vector3.right, rotateY * rotationSpeed);
-				transform.Translate (moveY, 0, moveX);
 				gamepadController.Refresh ();
 			}
 
