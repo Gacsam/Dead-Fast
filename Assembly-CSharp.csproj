@@ -55,6 +55,7 @@
      <Compile Include="Assets\Code\EnemyChase.cs" />
      <Compile Include="Assets\Code\GameUI.cs" />
      <Compile Include="Assets\Code\LAN-only\PlayerControllerLAN.cs" />
+     <Compile Include="Assets\Code\PigWandering.cs" />
      <Compile Include="Assets\Code\SS-only\Gamepad.cs" />
      <Compile Include="Assets\Code\SS-only\GamepadManager.cs" />
      <Compile Include="Assets\Code\SS-only\PlayerControllerSS.cs" />

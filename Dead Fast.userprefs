@@ -1,6 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\SS-only\PlayerControllerSS.cs">
+    <Files>
+      <File FileName="Assets\Code\GameUI.cs" Line="42" Column="22" />
+      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="132" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="140" column="1" />

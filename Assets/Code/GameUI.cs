@@ -22,7 +22,21 @@ public class GameUI : MonoBehaviour {
 		displaySize = ((float)pTwo / (float)zombieCount) * panelSize;
 		playerTwo.sizeDelta = new Vector2 (displaySize, 25);
 		displaySize = ((float)zombieCount - ((float)pOne + (float)pTwo)) / (float)zombieCount * panelSize;
-		middle.sizeDelta = new Vector2 (displaySize, 25);
+		middle.sizeDelta = new Vector2 (displaySize, 25); 
+
+		if (pOne > pTwo) {
+			playerOne.transform.Find ("Border").gameObject.SetActive (true);
+			playerTwo.transform.Find ("Border").gameObject.SetActive (false);
+			playerOne.transform.Find ("Border").GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerOne.sizeDelta.x + 10, 35);
+		}
+		else if (pTwo > pOne) {
+			playerOne.transform.Find ("Border").gameObject.SetActive (false);
+			playerTwo.transform.Find ("Border").gameObject.SetActive (true);
+			playerTwo.transform.Find ("Border").GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerTwo.sizeDelta.x + 10, 35);
+		} else {
+			playerOne.transform.Find ("Border").gameObject.SetActive (false);
+			playerTwo.transform.Find ("Border").gameObject.SetActive (false);
+		}
 	}
 
 	public void Start(){
