@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4723745174857912}
   - component: {fileID: 33002648860570426}
   - component: {fileID: 23092223309189530}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Group49566_MeshPart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4250583385006570}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZombieAlpha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4309725683064462}
   - component: {fileID: 33549778449579318}
   - component: {fileID: 23815380058320932}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Group49566_MeshPart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4341525058169684}
   - component: {fileID: 33540677199983412}
   - component: {fileID: 23262798664283176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Group49566_MeshPart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 114440723345191768}
   - component: {fileID: 114453649218337286}
   - component: {fileID: 114692127927001286}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZombiePlaceholder
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4692793569129074}
   - component: {fileID: 33699488140061944}
   - component: {fileID: 23301321359011640}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Group49566_MeshPart0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4552574242099834}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Group49566
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ MonoBehaviour:
   wanderRange: 10
   searchRange: 5
   angleOfView: 90
-  distanceToNotice: 10
+  distanceToNotice: 15
   wanderSpeed: 1
   maximumNoiseDistance: 25
   searchTime: 10
@@ -496,7 +496,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1000
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

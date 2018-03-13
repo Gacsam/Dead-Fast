@@ -70,10 +70,8 @@ public class ZombieNavmeshChase : MonoBehaviour {
 			if (characterDistance <= distanceToNotice) {
 				if (LineOfSight (zombieTarget.transform)) {
 					zombieGPS.destination = zombieTarget.transform.position;
-					zombieGPS.stoppingDistance = 0;
 //					transform.LookAt(zombieTarget.transform);
-				} else if (zombieGPS.remainingDistance <= 3) {
-					zombieGPS.stoppingDistance = 1;
+				} else if (zombieGPS.remainingDistance <= 0.1) {
 					zombieState = States.Search;
 				}
 			}

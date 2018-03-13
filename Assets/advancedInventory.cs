@@ -28,6 +28,8 @@ public class advancedInventory : MonoBehaviour {
 				if (currentWeapon.GetWeaponType () == pickedWeapon.GetWeaponType ()) {
 					// If it exists, take the ammo and close the loop
 					currentWeapon.ModAmmo (pickedWeapon.GetAmmo ());
+					if (theInventory [inventoryIndex].GetAmmo () == 0)
+						NextWeapon ();
 					return;
 				}
 			}
@@ -64,17 +66,15 @@ public class advancedInventory : MonoBehaviour {
 		newGrenade.SetWeaponType(WeaponScript.Weapon.Grenade);
 		newGrenade.SetAmmo (5);
 		WeaponPickup (newGrenade);
-		ShowHideWeapon ();
+		ShowWeapon ();
 		// Set weapon to 1 pigs
 		newPig.SetWeaponType(WeaponScript.Weapon.Pig);
 		newPig.SetAmmo (2);
 		WeaponPickup (newPig);
-		ShowHideWeapon ();
 		// Set weapon to 1 barricade
 		newBarrier.SetWeaponType(WeaponScript.Weapon.Barricade);
 		newBarrier.SetAmmo (1);
 		WeaponPickup (newBarrier);
-		ShowHideWeapon ();
 	}
 
 	public int GetWeaponAmmo(){
@@ -89,8 +89,12 @@ public class advancedInventory : MonoBehaviour {
 		return theInventory [inventoryIndex].GetWeaponType();
 	}
 
-	public void ShowHideWeapon(){
-		heldWeapons[inventoryIndex].SetActive (!heldWeapons[inventoryIndex].activeSelf);
+	public void HideWeapon(){
+		heldWeapons[inventoryIndex].SetActive (false);
+	}
+
+	public void ShowWeapon(){
+		heldWeapons[inventoryIndex].SetActive (true);
 	}
 
 	public int GetWeaponIndex(){
@@ -98,36 +102,47 @@ public class advancedInventory : MonoBehaviour {
 	}
 
 	public void NextWeapon(){
-		ShowHideWeapon ();
-		if (dynamicInventory){
+		HideWeapon ();
+		if (dynamicInventory) {
+			int startIndex = inventoryIndex;
 			do {
 				inventoryIndex += 1;
-				if (inventoryIndex > theInventory.Count - 1) {
+				if(inventoryIndex >theInventory.Count - 1){
 					inventoryIndex = 0;
-					ShowHideWeapon ();
+					HideWeapon ();
+				}
+				if (inventoryIndex == startIndex) {
 					return;
 				}
 			} while(theInventory [inventoryIndex].GetAmmo () == 0);
-		}else inventoryIndex += 1;
-
-		if (inventoryIndex > theInventory.Count - 1) {
-			inventoryIndex = 0;
+		} else {
+			inventoryIndex += 1;
+			if (inventoryIndex > theInventory.Count - 1) {
+				inventoryIndex = 0;
+			}
 		}
-
-		ShowHideWeapon ();
+		ShowWeapon ();
 	}
 
 	public void PrevWeapon(){
-		ShowHideWeapon ();
-		if (inventoryIndex == 0) {
-			inventoryIndex = theInventory.Count;
-		}
-		if (dynamicInventory){
+		HideWeapon ();
+		if (dynamicInventory) {
+			int startIndex = inventoryIndex;
 			do {
 				inventoryIndex -= 1;
+				if(inventoryIndex < 0){
+					inventoryIndex = theInventory.Count - 1;
+				}
+				if (inventoryIndex == startIndex){
+					return;
+				}
 			} while(theInventory [inventoryIndex].GetAmmo () == 0);
-		}else inventoryIndex -= 1;
-		ShowHideWeapon ();
+		} else {
+			inventoryIndex -= 1;
+			if (inventoryIndex == 0)
+				inventoryIndex = theInventory.Count;
+		}
+		ShowWeapon ();
 	}
 
 	public void SetLayers(int theLayer){
@@ -155,5 +170,7 @@ public class advancedInventory : MonoBehaviour {
 
 	public void ModAmmo(int changeAmmo){
 		theInventory [inventoryIndex].ModAmmo (changeAmmo);
+		if (theInventory [inventoryIndex].GetAmmo () == 0 && dynamicInventory)
+			NextWeapon ();
 	}
 }

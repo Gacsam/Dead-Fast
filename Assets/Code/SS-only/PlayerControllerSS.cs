@@ -35,7 +35,7 @@ public class PlayerControllerSS : MonoBehaviour
 
 	void Update ()
 	{
-		if (gamepadPlugged) {
+		if (0 == 1) { //gamepadPlugged
 			gamepad = GamepadManager.Instance.GetGamepad (gamepadIndex);
 			if (gamepad.IsConnected) {
 				if (gamepad.GetTriggerTap_R ()) {
@@ -43,9 +43,9 @@ public class PlayerControllerSS : MonoBehaviour
 					if (playerInventory.GetWeaponAmmo () > 0) {
 						StartCoroutine (UseWeapon (theWeapon));
 					}
-				}
-				if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.dynamicInventory) {
-					playerInventory.NextWeapon ();
+					if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.dynamicInventory) {
+						playerInventory.NextWeapon ();
+					}
 				}
 
 				Vector3 rbMove = new Vector3 (this.gamepad.GetStick_L ().X, 0, this.gamepad.GetStick_L ().Y);
@@ -88,9 +88,9 @@ public class PlayerControllerSS : MonoBehaviour
 	}
 
 	IEnumerator UseWeapon(WeaponScript.Weapon theWeapon){
-		if (notUsingWeapon) {			
+		if (notUsingWeapon) {
+			playerInventory.HideWeapon();
 			notUsingWeapon = false;
-			playerInventory.ModAmmo (-1);
 			if (theWeapon == WeaponScript.Weapon.Grenade) {
 				GrenadeThrow ();
 			} else if (theWeapon == WeaponScript.Weapon.Barricade) {
@@ -99,18 +99,23 @@ public class PlayerControllerSS : MonoBehaviour
 				PlayPig ();
 			} else
 				Debug.Log ("No Weapon");
-
-			if (playerInventory.GetWeaponAmmo () == 0 & playerInventory.dynamicInventory)
-				playerInventory.NextWeapon ();
-			yield return new WaitForSeconds (weaponDelay);
+			playerInventory.ModAmmo (-1);
+			if (playerInventory.GetWeaponAmmo () == 0) {
+				playerInventory.HideWeapon ();
+				if (playerInventory.dynamicInventory) {
+					playerInventory.NextWeapon ();
+				}
+				yield return null;
+			} else {
+				yield return new WaitForSeconds (weaponDelay);
+				playerInventory.ShowWeapon ();
+			}
 			notUsingWeapon = true;
 		}
 	}
 
 	void GrenadeThrow()
 	{
-		// Hide player-held grenade
-		playerInventory.ShowHideWeapon();
 		// Initiate and throw
 		GameObject grenade = Instantiate(
 			playerInventory.GetProjectilePrefab("Grenade"),
@@ -154,7 +159,6 @@ public class PlayerControllerSS : MonoBehaviour
 			GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
 			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
 		}
-
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			playerInventory.PrevWeapon ();
 		} else if (Input.GetKeyDown (KeyCode.E)) {
@@ -164,11 +168,7 @@ public class PlayerControllerSS : MonoBehaviour
 			if (playerInventory.GetWeaponAmmo () > 0) {
 					StartCoroutine (UseWeapon (theWeapon));
 			}
-			if (playerInventory.GetWeaponAmmo () == 0 && playerInventory.dynamicInventory) {
-				playerInventory.NextWeapon ();
-			}
 		}
-
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			Vector3 newVelocity = GetComponent<Rigidbody> ().velocity;
 			newVelocity.y = jumpHeight;

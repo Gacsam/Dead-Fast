@@ -16,8 +16,8 @@ public class PigControl : ZombieBait {
 	GameObject controllingPlayer;
 
 	void Start(){
-		foreach (GameObject theZombie in GameObject.FindGameObjectsWithTag ("Zombie")) {
-		}
+		baitDistance = 5;
+		StartCoroutine (RandomOink ());
 	}
 
 
@@ -40,7 +40,6 @@ public class PigControl : ZombieBait {
 		controllingPlayer.gameObject.GetComponentInChildren<Projector> ().enabled = true;
 		Destroy (this.transform.Find("Projector").gameObject);
 		isControlled = false;
-		StartCoroutine (RandomOink ());
 		this.enabled = false;
 	}
 
@@ -67,7 +66,9 @@ public class PigControl : ZombieBait {
 
 			// Oink
 			if (Input.GetMouseButtonDown (0) && !didOink) {
+				baitDistance = 15;
 				setBaitLocation (this.transform.position);
+				baitDistance = 5;
 				didOink = true;
 			}
 

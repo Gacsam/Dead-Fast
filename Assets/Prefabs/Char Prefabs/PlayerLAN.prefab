@@ -1081,8 +1081,8 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   weaponDelay: 0.25
   jumpHeight: 3
-  mouseKeyboard: 0
-  gamepadPlugged: 1
+  mouseKeyboard: 1
+  gamepadPlugged: 0
 --- !u!114 &114224195336865800
 MonoBehaviour:
   m_ObjectHideFlags: 1

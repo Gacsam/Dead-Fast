@@ -1,17 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DroppedItemScript.cs">
-    <Files>
-      <File FileName="Assets\Code\ZombieCounter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\GameUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\DroppedItemScript.cs" Line="22" Column="36" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="40" column="1" />
-      <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="77" column="1" />
       <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="140" column="1" />
+      <Breakpoint file="E:\Dead Fast\Assets\advancedInventory.cs" line="32" column="21" />
+      <Breakpoint file="E:\Dead Fast\Assets\advancedInventory.cs" line="31" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
