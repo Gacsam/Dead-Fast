@@ -1076,9 +1076,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamepadIndex: 0
-  throwForce: 15
-  rotationSpeed: 50
-  moveSpeed: 3
+  playerInventory: {fileID: 0}
+  weaponDelay: 0.25
   jumpHeight: 3
   mouseKeyboard: 0
   gamepadPlugged: 1
