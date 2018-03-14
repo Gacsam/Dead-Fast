@@ -49,6 +49,7 @@
      <Compile Include="Assets\AllAssets\UI\BarScript.cs" />
      <Compile Include="Assets\AllAssets\UI\Stat.cs" />
      <Compile Include="Assets\AllAssets\UI\UIManager.cs" />
+     <Compile Include="Assets\AnimalSpawner.cs" />
      <Compile Include="Assets\BarricadeLock.cs" />
      <Compile Include="Assets\CameraTopFollow.cs" />
      <Compile Include="Assets\Code\BulletCollision.cs" />

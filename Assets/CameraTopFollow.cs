@@ -13,6 +13,8 @@ public class CameraTopFollow : MonoBehaviour {
 	private GameObject[] thePlayers;
 	private Transform lookAt;
 	private bool isTopDown;
+	[SerializeField]
+	private GameObject[] playerPanels;
 
 	public void ChangePlayerFocus(GameObject thePlayer, int playerIndex){
 		thePlayers [playerIndex] = thePlayer;
@@ -35,11 +37,13 @@ public class CameraTopFollow : MonoBehaviour {
 		currentCharacter.gameObject.tag = "Player";
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (1);
+		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [0];
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 		currentCharacter.GetComponentInChildren<Projector> ().material.color = Color.red;
 		currentCharacter = Instantiate (playerPrefab, playerSpawns[1].position, playerSpawns[1].rotation);
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (2);
+		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [1];
 		currentCharacter.name = "Player 2";
 		currentCharacter.gameObject.tag = "Player";
 		thePlayers = GameObject.FindGameObjectsWithTag ("Player");

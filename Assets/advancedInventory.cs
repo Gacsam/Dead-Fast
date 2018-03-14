@@ -13,6 +13,8 @@ public class advancedInventory : MonoBehaviour {
 	[SerializeField]
 	public bool dynamicInventory = true;
 	private int thisLayer;
+	public GameObject playerPanel;
+	private Image[] iconsUI;
 
 	// Inventory system
 	private List<WeaponScript> theInventory;
@@ -83,6 +85,8 @@ public class advancedInventory : MonoBehaviour {
 
 	public void Start(){
 		Init ();
+		iconsUI = playerPanel.GetComponentsInChildren<Image> ();
+		UpdateUI ();
 	}
 
 	public WeaponScript.Weapon getWeapon(){
@@ -122,6 +126,7 @@ public class advancedInventory : MonoBehaviour {
 			}
 		}
 		ShowWeapon ();
+		UpdateUI ();
 	}
 
 	public void PrevWeapon(){
@@ -143,6 +148,7 @@ public class advancedInventory : MonoBehaviour {
 				inventoryIndex = theInventory.Count;
 		}
 		ShowWeapon ();
+		UpdateUI ();
 	}
 
 	public void SetLayers(int theLayer){
@@ -172,5 +178,19 @@ public class advancedInventory : MonoBehaviour {
 		theInventory [inventoryIndex].ModAmmo (changeAmmo);
 		if (theInventory [inventoryIndex].GetAmmo () == 0 && dynamicInventory)
 			NextWeapon ();
+		UpdateUI ();
+	}
+
+	private void UpdateUI(){
+		for(int i = 0; i < theInventory.Count; i++){
+			WeaponScript weapon = theInventory [i];
+			if (weapon == theInventory [inventoryIndex]) {
+				iconsUI [i].color = Color.white;
+			} else if (weapon.GetAmmo () == 0) {
+				iconsUI [i].color = Color.black;
+			} else {
+				iconsUI [i].color = Color.grey;
+			}
+		}
 	}
 }

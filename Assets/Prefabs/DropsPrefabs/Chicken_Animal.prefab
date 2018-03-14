@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4873123067779816}
-  - component: {fileID: 95967192902482830}
   - component: {fileID: 195318822203541172}
   - component: {fileID: 114915403271259198}
   - component: {fileID: 114698577804589162}
@@ -142,23 +141,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.556, y: 1.7780005, z: 3.810001}
   m_Center: {x: -0.25400007, y: 0, z: 0.8890002}
---- !u!95 &95967192902482830
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000856017166556}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bfa5bab992cffd847bf6d1cb4aa5f13a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114698577804589162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +176,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

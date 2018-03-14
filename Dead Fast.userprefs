@@ -1,16 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\SS-only\PlayerControllerSS.cs">
-    <Files>
-      <File FileName="Assets\Code\GameUI.cs" Line="42" Column="22" />
-      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="132" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="E:\Dead Fast\Assets\ZombieFarmChase.cs" line="140" column="1" />
       <Breakpoint file="E:\Dead Fast\Assets\advancedInventory.cs" line="32" column="21" />
       <Breakpoint file="E:\Dead Fast\Assets\advancedInventory.cs" line="31" column="1" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="188" column="1" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="187" column="1" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="186" column="22" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="185" column="1" />
+      <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="184" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

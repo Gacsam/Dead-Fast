@@ -42,8 +42,8 @@ GameObject:
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4033545906663388
 Transform:
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031059642657538}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.91, y: -0.035, z: -21.36}
+  m_LocalPosition: {x: 4.08, y: -0.035, z: -20.36}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.3}
   m_Children:
   - {fileID: 4878063748741196}

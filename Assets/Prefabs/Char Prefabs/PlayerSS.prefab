@@ -1062,8 +1062,9 @@ MonoBehaviour:
   projectilePrefabs:
   - {fileID: 1549063791313856, guid: c457d88197819bb409f34cabf9d8d0be, type: 2}
   - {fileID: 1565791646067422, guid: efb7ef8e9d85d67459d2804e090404b1, type: 2}
-  - {fileID: 0}
+  - {fileID: 1081401892684626, guid: 3ce9309a5afe176478803de4ca5125ee, type: 2}
   dynamicInventory: 1
+  playerPanel: {fileID: 0}
 --- !u!114 &114376558277769462
 MonoBehaviour:
   m_ObjectHideFlags: 1
