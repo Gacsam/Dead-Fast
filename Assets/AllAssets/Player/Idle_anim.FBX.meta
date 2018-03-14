@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 14296718fe3900a41879ee74318a8439
+timeCreated: 1521036741
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base Human
+    100002: Base HumanHead
+    100004: Base HumanHeadBone001
+    100006: Base HumanLCalf
+    100008: Base HumanLCollarbone
+    100010: Base HumanLFinger11
+    100012: Base HumanLFinger12
+    100014: Base HumanLFinger13
+    100016: Base HumanLFinger14
+    100018: Base HumanLFinger21
+    100020: Base HumanLFinger22
+    100022: Base HumanLFinger23
+    100024: Base HumanLFinger24
+    100026: Base HumanLFinger31
+    100028: Base HumanLFinger32
+    100030: Base HumanLFinger33
+    100032: Base HumanLFinger34
+    100034: Base HumanLFinger41
+    100036: Base HumanLFinger42
+    100038: Base HumanLFinger43
+    100040: Base HumanLFinger44
+    100042: Base HumanLFinger51
+    100044: Base HumanLFinger52
+    100046: Base HumanLFinger53
+    100048: Base HumanLFinger54
+    100050: Base HumanLFoot
+    100052: Base HumanLForearm
+    100054: Base HumanLPalm
+    100056: Base HumanLPlatform
+    100058: Base HumanLThigh
+    100060: Base HumanLToe11
+    100062: Base HumanLToe12
+    100064: Base HumanLUpperarm
+    100066: Base HumanNeck
+    100068: Base HumanPelvis
+    100070: Base HumanRCalf
+    100072: Base HumanRCollarbone
+    100074: Base HumanRFinger11
+    100076: Base HumanRFinger12
+    100078: Base HumanRFinger13
+    100080: Base HumanRFinger14
+    100082: Base HumanRFinger21
+    100084: Base HumanRFinger22
+    100086: Base HumanRFinger23
+    100088: Base HumanRFinger24
+    100090: Base HumanRFinger31
+    100092: Base HumanRFinger32
+    100094: Base HumanRFinger33
+    100096: Base HumanRFinger34
+    100098: Base HumanRFinger41
+    100100: Base HumanRFinger42
+    100102: Base HumanRFinger43
+    100104: Base HumanRFinger44
+    100106: Base HumanRFinger51
+    100108: Base HumanRFinger52
+    100110: Base HumanRFinger53
+    100112: Base HumanRFinger54
+    100114: Base HumanRFoot
+    100116: Base HumanRForearm
+    100118: Base HumanRibcage
+    100120: Base HumanRPalm
+    100122: Base HumanRPlatform
+    100124: Base HumanRThigh
+    100126: Base HumanRToe11
+    100128: Base HumanRToe12
+    100130: Base HumanRUpperarm
+    100132: Base HumanSpine1
+    100134: Base HumanSpine2
+    100136: Base HumanSpine3
+    100138: //RootNode
+    100140: Low Poly Body
+    400000: Base Human
+    400002: Base HumanHead
+    400004: Base HumanHeadBone001
+    400006: Base HumanLCalf
+    400008: Base HumanLCollarbone
+    400010: Base HumanLFinger11
+    400012: Base HumanLFinger12
+    400014: Base HumanLFinger13
+    400016: Base HumanLFinger14
+    400018: Base HumanLFinger21
+    400020: Base HumanLFinger22
+    400022: Base HumanLFinger23
+    400024: Base HumanLFinger24
+    400026: Base HumanLFinger31
+    400028: Base HumanLFinger32
+    400030: Base HumanLFinger33
+    400032: Base HumanLFinger34
+    400034: Base HumanLFinger41
+    400036: Base HumanLFinger42
+    400038: Base HumanLFinger43
+    400040: Base HumanLFinger44
+    400042: Base HumanLFinger51
+    400044: Base HumanLFinger52
+    400046: Base HumanLFinger53
+    400048: Base HumanLFinger54
+    400050: Base HumanLFoot
+    400052: Base HumanLForearm
+    400054: Base HumanLPalm
+    400056: Base HumanLPlatform
+    400058: Base HumanLThigh
+    400060: Base HumanLToe11
+    400062: Base HumanLToe12
+    400064: Base HumanLUpperarm
+    400066: Base HumanNeck
+    400068: Base HumanPelvis
+    400070: Base HumanRCalf
+    400072: Base HumanRCollarbone
+    400074: Base HumanRFinger11
+    400076: Base HumanRFinger12
+    400078: Base HumanRFinger13
+    400080: Base HumanRFinger14
+    400082: Base HumanRFinger21
+    400084: Base HumanRFinger22
+    400086: Base HumanRFinger23
+    400088: Base HumanRFinger24
+    400090: Base HumanRFinger31
+    400092: Base HumanRFinger32
+    400094: Base HumanRFinger33
+    400096: Base HumanRFinger34
+    400098: Base HumanRFinger41
+    400100: Base HumanRFinger42
+    400102: Base HumanRFinger43
+    400104: Base HumanRFinger44
+    400106: Base HumanRFinger51
+    400108: Base HumanRFinger52
+    400110: Base HumanRFinger53
+    400112: Base HumanRFinger54
+    400114: Base HumanRFoot
+    400116: Base HumanRForearm
+    400118: Base HumanRibcage
+    400120: Base HumanRPalm
+    400122: Base HumanRPlatform
+    400124: Base HumanRThigh
+    400126: Base HumanRToe11
+    400128: Base HumanRToe12
+    400130: Base HumanRUpperarm
+    400132: Base HumanSpine1
+    400134: Base HumanSpine2
+    400136: Base HumanSpine3
+    400138: //RootNode
+    400140: Low Poly Body
+    4300000: Low Poly Body
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Low Poly Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
