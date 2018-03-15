@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4764122126281282}
   - component: {fileID: 33098993362288164}
   - component: {fileID: 23560244138083652}
-  - component: {fileID: 65728978078081630}
+  - component: {fileID: 64191732841694378}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Bait
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646540866422126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5838466, y: 0.37, z: 1.0087575}
+  m_LocalPosition: {x: -14.076885, y: 0.30498803, z: 20.38471}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4764122126281282}
@@ -129,8 +129,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65728978078081630
-BoxCollider:
+--- !u!64 &64191732841694378
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -139,8 +139,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.3179994, y: 1.7780005, z: 2.540627}
-  m_Center: {x: -0.63499993, y: 0, z: 0.25368685}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 55b9d8c0fc79917478ec72aec64e5118, type: 3}
 --- !u!114 &114376521835345370
 MonoBehaviour:
   m_ObjectHideFlags: 1
