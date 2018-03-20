@@ -370,21 +370,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: dcfbffff00000000
+    m_ExpandedIDs: dcfbffff00000000382a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: ZombieControl
-      m_OriginalName: ZombieControl
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10776
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.122270495, y: -0.0028596763, z: 0.000725556, w: -0.99249244}
     speed: 2
-    m_Value: {x: -0.122270495, y: -0.0028596763, z: 0.000725556, w: -0.99249244}
+    m_Value: {x: -0.1222705, y: -0.0028596765, z: 0.000725556, w: -0.9924925}
   m_Size:
     m_Target: 22
     speed: 2
@@ -579,19 +579,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Code
+    - Assets/Prefabs/Char Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Code
+  - Assets/Prefabs/Char Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\Dead Fast
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
-    m_SelectedIDs: 9c250000
-    m_LastClickedID: 9628
-    m_ExpandedIDs: 00000000e62400009c250000a0250000aa250000ac2500000a2700009c270000e8270000522d0000542d0000562d0000582d000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 1}
+    m_SelectedIDs: 16250000
+    m_LastClickedID: 9494
+    m_ExpandedIDs: 00000000e2240000982500009c250000a6250000a82500000627000098270000e4270000502d0000522d0000542d0000562d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,7 +619,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e62400009c250000a0250000aa250000ac2500000a2700009c270000e8270000522d0000542d0000562d0000582d0000
+    m_ExpandedIDs: 00000000e2240000982500009c250000a6250000a82500000627000098270000e4270000502d0000522d0000542d0000562d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

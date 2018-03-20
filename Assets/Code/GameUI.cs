@@ -43,10 +43,6 @@ public class GameUI : MonoBehaviour {
 		timeLeft = maxTime;
 		panelSize = this.transform.Find ("CountPanel").GetComponent<RectTransform> ().sizeDelta.x;
 		StartCoroutine (UpdateZombieCount ());
-		Button[] allButtons = GetComponentsInChildren<Button> ();
-		foreach (Button theButton in allButtons) {
-			theButton.onClick.AddListener (() => ButtonClick (theButton.name));
-		}
 		this.transform.Find ("End").GetComponent<Image> ().gameObject.SetActive (false);
 	}
 
@@ -56,8 +52,7 @@ public class GameUI : MonoBehaviour {
 		zombieCount = zombies.Length;
 	}
 
-	void ButtonClick(string theButton){
-		Debug.Log ("PRESSED");
+	public void RestartButton(){
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
 

@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderRange: 10
   searchRange: 5
-  angleOfView: 360
+  angleOfView: 120
   distanceToNotice: 15
   wanderSpeed: 1
   maximumNoiseDistance: 25
