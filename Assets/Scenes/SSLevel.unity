@@ -4575,6 +4575,8 @@ MonoBehaviour:
   zombieTemplate: {fileID: 1686003087903782, guid: eb5f5cef8366b6446b84b4ea7f43bf10,
     type: 2}
   zombieLimit: 25
+  spawnPoints:
+  - {fileID: 1707493747}
 --- !u!4 &1707493747
 Transform:
   m_ObjectHideFlags: 0
@@ -4582,7 +4584,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707493744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -5,6 +5,7 @@ public class ZombieSpawner : MonoBehaviour {
 
 	public GameObject zombieTemplate;
 	public int zombieLimit = 25;
+	public Transform[] spawnPoints;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,8 @@ public class ZombieSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GameObject.FindGameObjectsWithTag ("Zombie").Length < zombieLimit) {
-			Vector3 point;
-			if (RandomPoint (Vector3.up, 10, out point)) {
+			Vector3 point = spawnPoints[Random.Range(0, spawnPoints.Length-1)].position;
+			if (RandomPoint (point, 10, out point)) {
 				Instantiate (zombieTemplate, point, Quaternion.Euler (new Vector3 (0, Random.Range (0, 360), 0)));
 				return;
 			} else

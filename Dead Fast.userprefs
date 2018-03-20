@@ -7,7 +7,7 @@
       <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="1" Column="1" />
       <File FileName="Assets\ZombieFarmChase.cs" Line="1" Column="1" />
       <File FileName="Assets\CameraTopFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\ZombieSpawner.cs" Line="31" Column="21" />
+      <File FileName="Assets\Code\ZombieSpawner.cs" Line="19" Column="79" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
