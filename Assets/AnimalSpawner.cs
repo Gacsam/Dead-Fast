@@ -23,11 +23,13 @@ public class AnimalSpawner : MonoBehaviour {
 	}
 
 	IEnumerator SpawnAnimal(){
-		float theTime = timeBetweenSpawns;
-		if (randomSpawnDelay) {
-			theTime = Random.Range ((int)timeBetweenSpawns, (int)maxSpawnDelay);
+		while (true) {
+			float theTime = timeBetweenSpawns;
+			if (randomSpawnDelay) {
+				theTime = Random.Range ((int)timeBetweenSpawns, (int)maxSpawnDelay);
+			}
+			yield return new WaitForSeconds (theTime);
+			Instantiate (theAnimal, transform.position, transform.rotation);
 		}
-		yield return new WaitForSeconds (theTime);
-		Instantiate (theAnimal, transform.position, transform.rotation);
 	}
 }
