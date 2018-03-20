@@ -24,7 +24,8 @@ public class ZombieFarmChase : MonoBehaviour {
 	private GameObject zombieTarget;
 	private float searchCountdown;
 	private Vector3 lastSeenPosition;
-	private bool zombieCanWander = true;
+	[SerializeField]
+	private bool zombieCanWander = false;
 
 	void Start() {
 		zombieGPS = this.GetComponent<NavMeshAgent> ();
@@ -33,21 +34,16 @@ public class ZombieFarmChase : MonoBehaviour {
 		RandomiseWander (this.transform.position);
 		zombieGPS.stoppingDistance = 0.5f;
 	}
-
 		
 	void Update() {
 		// In order of importance: follow, search, noise, wander
 		if (zombieState == States.Follow) {
 				if (LineOfSight (zombieTarget)) {
-					zombieGPS.stoppingDistance = 0f;
 					zombieGPS.destination = zombieTarget.transform.position;
 				} else {
 					zombieTarget = null;
 					zombieState = States.Search;
-					zombieGPS.stoppingDistance = 0.5f;
 					lastSeenPosition = zombieGPS.destination;
-					RandomiseWander (lastSeenPosition);
-					searchCountdown = searchTime;
 			}
 		} else if (zombieState == States.Noise && zombieGPS.remainingDistance <= 1) {
 			lastSeenPosition = zombieGPS.destination;
@@ -69,24 +65,29 @@ public class ZombieFarmChase : MonoBehaviour {
 
 		// Check if not already following a bait
 		if (!(zombieState == States.Follow)) {
-			if (GameObject.FindGameObjectsWithTag("Bait").Length > 0) {
-				foreach (GameObject currentBait in GameObject.FindGameObjectsWithTag("Bait")) {
-					if (Vector3.Distance (this.transform.position, currentBait.transform.position) <= distanceToNotice) {
-						if (LineOfSight (currentBait)) {
-							Debug.Log ("Target locked");
-							zombieTarget = currentBait;
-							zombieGPS.destination = currentBait.transform.position;
-							zombieState = States.Follow;
-						}
-					}
-				}
-			}
+			StartCoroutine(CheckBait ());
 		}
 
 		if (Input.GetKeyDown (KeyCode.Y))
 			zombieCanWander = !zombieCanWander;
 	}
-		
+
+	IEnumerator CheckBait(){
+		if (GameObject.FindGameObjectsWithTag("Bait").Length > 0) {
+			foreach (GameObject currentBait in GameObject.FindGameObjectsWithTag("Bait")) {
+				if (Vector3.Distance (this.transform.position, currentBait.transform.position) <= distanceToNotice) {
+					if (LineOfSight (currentBait)) {
+						Debug.Log ("Target locked");
+						zombieTarget = currentBait;
+						zombieGPS.destination = currentBait.transform.position;
+						zombieState = States.Follow;
+					}
+				}
+			}
+		}
+		yield return new WaitForSeconds(1);
+	}
+
 	bool RandomPoint(Vector3 center, float range, out Vector3 result) {
 		for (int i = 0; i < 30; i++) {
 			Vector3 randomPoint = center + Random.insideUnitSphere * range;
@@ -128,12 +129,20 @@ public class ZombieFarmChase : MonoBehaviour {
 	bool LineOfSight (GameObject target) {
 		if (target) {
 			RaycastHit hit;
+			Debug.DrawLine (transform.position, target.transform.position);
 			if (Physics.Linecast (transform.position, target.transform.position, out hit)) {
+				Debug.Log (hit.collider.gameObject.tag);
 				if (hit.collider.gameObject.tag == target.tag) {
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.collider.tag == "Bait") {
+			Destroy (col.gameObject);
+		}
 	}
 }

@@ -411,12 +411,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderRange: 10
   searchRange: 5
-  angleOfView: 90
+  angleOfView: 360
   distanceToNotice: 15
   wanderSpeed: 1
   maximumNoiseDistance: 25
   searchTime: 10
   zombieState: 0
+  zombieCanWander: 0
 --- !u!114 &114453649218337286
 MonoBehaviour:
   m_ObjectHideFlags: 1

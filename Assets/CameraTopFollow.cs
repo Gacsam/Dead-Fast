@@ -16,6 +16,9 @@ public class CameraTopFollow : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] playerPanels;
 
+	private Quaternion defaultRotation;
+	private Vector3 defaultPosition;
+
 	public void ChangePlayerFocus(GameObject thePlayer, int playerIndex){
 		thePlayers [playerIndex] = thePlayer;
 	}
@@ -24,11 +27,19 @@ public class CameraTopFollow : MonoBehaviour {
 	void Start () {
 		lookAt = GameObject.Find ("CameraFollow").transform;
 		CreateTwoPlayers ();
+		defaultPosition = this.transform.position;
+		defaultRotation = this.transform.rotation;
 	}
 
 	// Update is called once per frame
 	void Update () {
-//		MoveCamera ();
+		if (Input.GetKey (KeyCode.M))
+			MoveCamera ();
+		else {
+			Debug.Log ("no m");
+			this.transform.position = defaultPosition;
+			this.transform.rotation = defaultRotation;
+		}
 	}
 
 	void CreateTwoPlayers(){

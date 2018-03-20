@@ -10,11 +10,10 @@ public class PlayerControllerSS : MonoBehaviour
 	private int throwForce = 25;
 	[SerializeField]
 	private advancedInventory playerInventory;
-	private int moveSpeed = 3;
+	[SerializeField]
+	private int moveSpeed = 5;
 	[SerializeField]
 	private float weaponDelay = 0.25f;
-	[SerializeField]
-	private int jumpHeight = 3;
 	private bool notUsingWeapon = true;
 
 	[Tooltip("Are you using keyboard/mouse?")]
@@ -168,11 +167,6 @@ public class PlayerControllerSS : MonoBehaviour
 			if (playerInventory.GetWeaponAmmo () > 0) {
 					StartCoroutine (UseWeapon (theWeapon));
 			}
-		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			Vector3 newVelocity = GetComponent<Rigidbody> ().velocity;
-			newVelocity.y = jumpHeight;
-			GetComponent<Rigidbody> ().velocity = newVelocity;
 		}
 	}
 }
