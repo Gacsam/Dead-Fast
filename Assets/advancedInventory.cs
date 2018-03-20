@@ -32,6 +32,7 @@ public class advancedInventory : MonoBehaviour {
 					currentWeapon.ModAmmo (pickedWeapon.GetAmmo ());
 					if (theInventory [inventoryIndex].GetAmmo () == 0)
 						NextWeapon ();
+					UpdateUI ();
 					return;
 				}
 			}
@@ -66,12 +67,12 @@ public class advancedInventory : MonoBehaviour {
 		WeaponScript newPig = new WeaponScript();
 		// Set weapon to 5 grenades
 		newGrenade.SetWeaponType(WeaponScript.Weapon.Grenade);
-		newGrenade.SetAmmo (5);
+		newGrenade.SetAmmo (1);
 		WeaponPickup (newGrenade);
 		ShowWeapon ();
 		// Set weapon to 1 pigs
 		newPig.SetWeaponType(WeaponScript.Weapon.Pig);
-		newPig.SetAmmo (2);
+		newPig.SetAmmo (1);
 		WeaponPickup (newPig);
 		// Set weapon to 1 barricade
 		newBarrier.SetWeaponType(WeaponScript.Weapon.Barricade);
@@ -184,10 +185,10 @@ public class advancedInventory : MonoBehaviour {
 	private void UpdateUI(){
 		for(int i = 0; i < theInventory.Count; i++){
 			WeaponScript weapon = theInventory [i];
-			if (weapon == theInventory [inventoryIndex]) {
-				iconsUI [i].color = Color.white;
-			} else if (weapon.GetAmmo () == 0) {
+			if (weapon.GetAmmo () == 0) {
 				iconsUI [i].color = Color.black;
+			}else if (weapon == theInventory [inventoryIndex]) {
+				iconsUI [i].color = Color.white;
 			} else {
 				iconsUI [i].color = Color.grey;
 			}

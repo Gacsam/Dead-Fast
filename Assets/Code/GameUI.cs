@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour {
 
-	[SerializeField]
-	private float maxTime = 60;
-	private float timeLeft;
+	public float maxTime = 60;
+	public float timeLeft;
 	[SerializeField]
 	private Image theTimer;
 	[SerializeField]

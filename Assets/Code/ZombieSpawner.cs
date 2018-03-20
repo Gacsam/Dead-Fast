@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class ZombieSpawner : MonoBehaviour {
 
 	public GameObject zombieTemplate;
-	public int zombieLimit = 25;
+	[SerializeField]
+	private int startZombies = 10;
+	[SerializeField]
+	private int zombieLimit = 25;
 	public Transform[] spawnPoints;
 
 	// Use this for initialization
 	void Start () {
 		// Create singleton instance
 		DontDestroyOnLoad(this.gameObject);
+		StartCoroutine (AddZombie ());
 	}
 	
 	// Update is called once per frame
@@ -33,7 +38,7 @@ public class ZombieSpawner : MonoBehaviour {
 		}
 	}
 
-	bool RandomPoint(Vector3 center, float range, out Vector3 result) {
+	private bool RandomPoint(Vector3 center, float range, out Vector3 result) {
 		for (int i = 0; i < 30; i++) {
 			Vector3 randomPoint = center + Random.insideUnitSphere * range;
 			NavMeshHit hit;
@@ -44,5 +49,15 @@ public class ZombieSpawner : MonoBehaviour {
 		}
 		result = Vector3.zero;
 		return false;
+	}
+
+	IEnumerator AddZombie(){
+		int beginZombies = startZombies;
+		while (true) {
+			yield return new WaitForSeconds (5); // GameObject.FindObjectOfType<GameUI> ().timeLeft / (zombieLimit - startZombies)
+			if (startZombies < zombieLimit) {
+				startZombies++;
+			}
+		}
 	}
 }

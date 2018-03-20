@@ -4576,7 +4576,10 @@ MonoBehaviour:
     type: 2}
   zombieLimit: 25
   spawnPoints:
-  - {fileID: 1707493747}
+  - {fileID: 276700876}
+  - {fileID: 100098550}
+  - {fileID: 37208247}
+  - {fileID: 2136138532}
 --- !u!4 &1707493747
 Transform:
   m_ObjectHideFlags: 0
