@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerControllerSS : MonoBehaviour
 {
 	public int gamepadIndex;
+	private Animator myAnimator;
 	private x360_Gamepad gamepad;
 	private int throwForce = 25;
 	[SerializeField]
@@ -21,7 +22,8 @@ public class PlayerControllerSS : MonoBehaviour
 
 	[Tooltip("Are you using a gamepad?")]
 	public bool gamepadPlugged = true;
-	
+
+	private Rigidbody theRigidbody;
 
 	public void SetGamepadIndex(int newIndex){
 		gamepadIndex = newIndex;
@@ -30,11 +32,13 @@ public class PlayerControllerSS : MonoBehaviour
 
 	void Start(){
 		playerInventory = this.GetComponent<advancedInventory> ();
+		myAnimator = GetComponentInChildren<Animator> ();
+		theRigidbody = GetComponent<Rigidbody> ();
 	}
 
 	void Update ()
 	{
-		if (0 == 1) { //gamepadPlugged
+		if (gamepadPlugged) {
 			gamepad = GamepadManager.Instance.GetGamepad (gamepadIndex);
 			if (gamepad.IsConnected) {
 				if (gamepad.GetTriggerTap_R ()) {
@@ -51,7 +55,7 @@ public class PlayerControllerSS : MonoBehaviour
 				if (rbMove != Vector3.zero) {
 					rbMove = Camera.main.transform.Find("CameraDirection").transform.TransformDirection (rbMove);
 					rbMove.y = 0;
-					GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
+					theRigidbody.MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
 					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
 				}
 
@@ -76,7 +80,6 @@ public class PlayerControllerSS : MonoBehaviour
 		} else if (Input.GetKeyDown (KeyCode.K)) {
 			mouseKeyboard = !mouseKeyboard;
 		}
-
 	}
 
 	void TestRumble()
@@ -90,6 +93,7 @@ public class PlayerControllerSS : MonoBehaviour
 		if (notUsingWeapon) {
 			playerInventory.HideWeapon();
 			notUsingWeapon = false;
+			myAnimator.SetBool ("fire", true);
 			if (theWeapon == WeaponScript.Weapon.Grenade) {
 				GrenadeThrow ();
 			} else if (theWeapon == WeaponScript.Weapon.Barricade) {
@@ -140,23 +144,17 @@ public class PlayerControllerSS : MonoBehaviour
 			                 playerInventory.GetProjectileSpawn ("Pig").position,
 			                 playerInventory.GetProjectileSpawn ("Pig").rotation);
 		pig.GetComponentInChildren<PigControl> ().StartCoroutine(pig.GetComponentInChildren<PigControl> ().TakeControl (gamepad, this.gameObject));
-		Projector theProjector = this.gameObject.GetComponentInChildren<Projector> ();
-		Projector newProjector = pig.transform.Find ("Projector").gameObject.AddComponent<Projector> ();
-		newProjector.material = theProjector.material;
-		newProjector.orthographic = theProjector.orthographic;
-		newProjector.orthographicSize = theProjector.orthographicSize;
-		newProjector.ignoreLayers = theProjector.ignoreLayers;
-		theProjector.enabled = false;
 		this.enabled = false;
 	}
 
 	void MovePlayer(){
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		myAnimator.SetFloat ("speed", rbMove.magnitude);
 		if (rbMove != Vector3.zero) {
 			rbMove = Camera.main.transform.Find("CameraDirection").transform.TransformDirection (rbMove);
 			rbMove.y = 0;
-			GetComponent<Rigidbody> ().MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.075f);
+			theRigidbody.MovePosition (this.transform.position + rbMove * moveSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), moveSpeed * 0.02f);
 		}
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			playerInventory.PrevWeapon ();

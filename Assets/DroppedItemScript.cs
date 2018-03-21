@@ -18,7 +18,6 @@ public class DroppedItemScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col){
-		Debug.Log ("Colliding");
 		if (col.gameObject.tag == "Player") {
 			col.gameObject.GetComponentInParent<advancedInventory> ().WeaponPickup (thisWeapon);
 			Destroy (this.gameObject);

@@ -1,0 +1,550 @@
+fileFormatVersion: 2
+guid: 461d81f7cc27af042a0694fe4afdb5a8
+timeCreated: 1521643453
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: character run rig
+    100002: character run rigHead
+    100004: character run rigHeadBone001
+    100006: character run rigLCalf
+    100008: character run rigLCollarbone
+    100010: character run rigLFinger11
+    100012: character run rigLFinger12
+    100014: character run rigLFinger13
+    100016: character run rigLFinger14
+    100018: character run rigLFinger21
+    100020: character run rigLFinger22
+    100022: character run rigLFinger23
+    100024: character run rigLFinger24
+    100026: character run rigLFinger31
+    100028: character run rigLFinger32
+    100030: character run rigLFinger33
+    100032: character run rigLFinger34
+    100034: character run rigLFinger41
+    100036: character run rigLFinger42
+    100038: character run rigLFinger43
+    100040: character run rigLFinger44
+    100042: character run rigLFinger51
+    100044: character run rigLFinger52
+    100046: character run rigLFinger53
+    100048: character run rigLFinger54
+    100050: character run rigLFoot
+    100052: character run rigLForearm
+    100054: character run rigLPalm
+    100056: character run rigLPlatform
+    100058: character run rigLThigh
+    100060: character run rigLToe11
+    100062: character run rigLToe12
+    100064: character run rigLUpperarm
+    100066: character run rigNeck
+    100068: character run rigPelvis
+    100070: character run rigRCalf
+    100072: character run rigRCollarbone
+    100074: character run rigRFinger11
+    100076: character run rigRFinger12
+    100078: character run rigRFinger13
+    100080: character run rigRFinger14
+    100082: character run rigRFinger21
+    100084: character run rigRFinger22
+    100086: character run rigRFinger23
+    100088: character run rigRFinger24
+    100090: character run rigRFinger31
+    100092: character run rigRFinger32
+    100094: character run rigRFinger33
+    100096: character run rigRFinger34
+    100098: character run rigRFinger41
+    100100: character run rigRFinger42
+    100102: character run rigRFinger43
+    100104: character run rigRFinger44
+    100106: character run rigRFinger51
+    100108: character run rigRFinger52
+    100110: character run rigRFinger53
+    100112: character run rigRFinger54
+    100114: character run rigRFoot
+    100116: character run rigRForearm
+    100118: character run rigRibcage
+    100120: character run rigRPalm
+    100122: character run rigRPlatform
+    100124: character run rigRThigh
+    100126: character run rigRToe11
+    100128: character run rigRToe12
+    100130: character run rigRUpperarm
+    100132: character run rigSpine1
+    100134: character run rigSpine2
+    100136: character run rigSpine3
+    100138: //RootNode
+    100140: RetopoGroup004
+    400000: character run rig
+    400002: character run rigHead
+    400004: character run rigHeadBone001
+    400006: character run rigLCalf
+    400008: character run rigLCollarbone
+    400010: character run rigLFinger11
+    400012: character run rigLFinger12
+    400014: character run rigLFinger13
+    400016: character run rigLFinger14
+    400018: character run rigLFinger21
+    400020: character run rigLFinger22
+    400022: character run rigLFinger23
+    400024: character run rigLFinger24
+    400026: character run rigLFinger31
+    400028: character run rigLFinger32
+    400030: character run rigLFinger33
+    400032: character run rigLFinger34
+    400034: character run rigLFinger41
+    400036: character run rigLFinger42
+    400038: character run rigLFinger43
+    400040: character run rigLFinger44
+    400042: character run rigLFinger51
+    400044: character run rigLFinger52
+    400046: character run rigLFinger53
+    400048: character run rigLFinger54
+    400050: character run rigLFoot
+    400052: character run rigLForearm
+    400054: character run rigLPalm
+    400056: character run rigLPlatform
+    400058: character run rigLThigh
+    400060: character run rigLToe11
+    400062: character run rigLToe12
+    400064: character run rigLUpperarm
+    400066: character run rigNeck
+    400068: character run rigPelvis
+    400070: character run rigRCalf
+    400072: character run rigRCollarbone
+    400074: character run rigRFinger11
+    400076: character run rigRFinger12
+    400078: character run rigRFinger13
+    400080: character run rigRFinger14
+    400082: character run rigRFinger21
+    400084: character run rigRFinger22
+    400086: character run rigRFinger23
+    400088: character run rigRFinger24
+    400090: character run rigRFinger31
+    400092: character run rigRFinger32
+    400094: character run rigRFinger33
+    400096: character run rigRFinger34
+    400098: character run rigRFinger41
+    400100: character run rigRFinger42
+    400102: character run rigRFinger43
+    400104: character run rigRFinger44
+    400106: character run rigRFinger51
+    400108: character run rigRFinger52
+    400110: character run rigRFinger53
+    400112: character run rigRFinger54
+    400114: character run rigRFoot
+    400116: character run rigRForearm
+    400118: character run rigRibcage
+    400120: character run rigRPalm
+    400122: character run rigRPlatform
+    400124: character run rigRThigh
+    400126: character run rigRToe11
+    400128: character run rigRToe12
+    400130: character run rigRUpperarm
+    400132: character run rigSpine1
+    400134: character run rigSpine2
+    400136: character run rigSpine3
+    400138: //RootNode
+    400140: RetopoGroup004
+    4300000: RetopoGroup004
+    7400000: Run
+    9500000: //RootNode
+    13700000: RetopoGroup004
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: character run rig
+        weight: 1
+      - path: character run rigLPlatform
+        weight: 1
+      - path: character run rigPelvis
+        weight: 1
+      - path: character run rigPelvis/character run rigLThigh
+        weight: 1
+      - path: character run rigPelvis/character run rigLThigh/character run rigLCalf
+        weight: 1
+      - path: character run rigPelvis/character run rigLThigh/character run rigLCalf/character
+          run rigLFoot
+        weight: 1
+      - path: character run rigPelvis/character run rigLThigh/character run rigLCalf/character
+          run rigLFoot/character run rigLToe11
+        weight: 1
+      - path: character run rigPelvis/character run rigLThigh/character run rigLCalf/character
+          run rigLFoot/character run rigLToe11/character run rigLToe12
+        weight: 1
+      - path: character run rigPelvis/character run rigRThigh
+        weight: 1
+      - path: character run rigPelvis/character run rigRThigh/character run rigRCalf
+        weight: 1
+      - path: character run rigPelvis/character run rigRThigh/character run rigRCalf/character
+          run rigRFoot
+        weight: 1
+      - path: character run rigPelvis/character run rigRThigh/character run rigRCalf/character
+          run rigRFoot/character run rigRToe11
+        weight: 1
+      - path: character run rigPelvis/character run rigRThigh/character run rigRCalf/character
+          run rigRFoot/character run rigRToe11/character run rigRToe12
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger11
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger11/character run rigLFinger12
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger11/character run rigLFinger12/character run rigLFinger13
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger11/character run rigLFinger12/character run rigLFinger13/character
+          run rigLFinger14
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger21
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger21/character run rigLFinger22
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger21/character run rigLFinger22/character run rigLFinger23
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger21/character run rigLFinger22/character run rigLFinger23/character
+          run rigLFinger24
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger31
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger31/character run rigLFinger32
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger31/character run rigLFinger32/character run rigLFinger33
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger31/character run rigLFinger32/character run rigLFinger33/character
+          run rigLFinger34
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger41
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger41/character run rigLFinger42
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger41/character run rigLFinger42/character run rigLFinger43
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger41/character run rigLFinger42/character run rigLFinger43/character
+          run rigLFinger44
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger51
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger51/character run rigLFinger52
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger51/character run rigLFinger52/character run rigLFinger53
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigLCollarbone/character
+          run rigLUpperarm/character run rigLForearm/character run rigLPalm/character
+          run rigLFinger51/character run rigLFinger52/character run rigLFinger53/character
+          run rigLFinger54
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigNeck
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigNeck/character run
+          rigHead
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigNeck/character run
+          rigHead/character run rigHeadBone001
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger11
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger11/character run rigRFinger12
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger11/character run rigRFinger12/character run rigRFinger13
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger11/character run rigRFinger12/character run rigRFinger13/character
+          run rigRFinger14
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger21
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger21/character run rigRFinger22
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger21/character run rigRFinger22/character run rigRFinger23
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger21/character run rigRFinger22/character run rigRFinger23/character
+          run rigRFinger24
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger31
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger31/character run rigRFinger32
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger31/character run rigRFinger32/character run rigRFinger33
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger31/character run rigRFinger32/character run rigRFinger33/character
+          run rigRFinger34
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger41
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger41/character run rigRFinger42
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger41/character run rigRFinger42/character run rigRFinger43
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger41/character run rigRFinger42/character run rigRFinger43/character
+          run rigRFinger44
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger51
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger51/character run rigRFinger52
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger51/character run rigRFinger52/character run rigRFinger53
+        weight: 1
+      - path: character run rigPelvis/character run rigSpine1/character run rigSpine2/character
+          run rigSpine3/character run rigRibcage/character run rigRCollarbone/character
+          run rigRUpperarm/character run rigRForearm/character run rigRPalm/character
+          run rigRFinger51/character run rigRFinger52/character run rigRFinger53/character
+          run rigRFinger54
+        weight: 1
+      - path: character run rigRPlatform
+        weight: 1
+      - path: RetopoGroup004
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,9 +15,12 @@ public class PigControl : ZombieBait {
 
 	GameObject controllingPlayer;
 
+	[SerializeField]
+	private AudioSource pigSound;
+
 	void Start(){
 		baitDistance = 5;
-		StartCoroutine (RandomOink ());
+		pigSound = GetComponent<AudioSource> ();
 	}
 
 
@@ -43,11 +46,6 @@ public class PigControl : ZombieBait {
 		this.enabled = false;
 	}
 
-	IEnumerator RandomOink(){
-		yield return new WaitForSeconds (Random.Range(5, 30));
-		setBaitLocation (this.transform.position);
-	}
-
 	void MovePlayer(){
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		if (rbMove != Vector3.zero) {
@@ -57,25 +55,25 @@ public class PigControl : ZombieBait {
 			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (rbMove), 0.75f);
 		}
 	}
+
+	void Oink(){
+		pigSound.Play ();
+		setBaitLocation (this.transform.position);
+		didOink = true;
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isControlled) {
 			MovePlayer ();
-
-
 			// Oink
 			if (Input.GetMouseButtonDown (0) && !didOink) {
-				baitDistance = 15;
-				setBaitLocation (this.transform.position);
-				baitDistance = 5;
-				didOink = true;
+				Oink ();
 			}
 
 			if (gamepadController.IsConnected) {
 				if (gamepadController.GetTriggerTap_R () && !didOink) {
-					setBaitLocation (this.transform.position);
-					didOink = true;
+					Oink ();
 				}
 
 				Vector3 rbMove = new Vector3 (this.gamepadController.GetStick_L ().X, 0, this.gamepadController.GetStick_L ().Y);

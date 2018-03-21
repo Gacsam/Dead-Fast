@@ -15,6 +15,8 @@ public class CameraTopFollow : MonoBehaviour {
 	private bool isTopDown;
 	[SerializeField]
 	private GameObject[] playerPanels;
+	[SerializeField]
+	private GameObject[] playerModels;
 
 	private Quaternion defaultRotation;
 	private Vector3 defaultPosition;
@@ -33,10 +35,9 @@ public class CameraTopFollow : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.M))
+		if (Input.GetKeyDown (KeyCode.M))
 			MoveCamera ();
-		else {
-			Debug.Log ("no m");
+		else if(Input.GetKeyUp(KeyCode.M)) {
 			this.transform.position = defaultPosition;
 			this.transform.rotation = defaultRotation;
 		}
@@ -44,23 +45,21 @@ public class CameraTopFollow : MonoBehaviour {
 
 	void CreateTwoPlayers(){
 		GameObject currentCharacter = Instantiate (playerPrefab, playerSpawns[0].position, playerSpawns[0].rotation);
+		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [0];
+		Instantiate (playerModels [0], currentCharacter.transform);
 		currentCharacter.name = "Player 1";
 		currentCharacter.gameObject.tag = "Player";
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (1);
-		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [0];
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
-		currentCharacter.GetComponentInChildren<Projector> ().material.color = Color.red;
 		currentCharacter = Instantiate (playerPrefab, playerSpawns[1].position, playerSpawns[1].rotation);
+		Instantiate (playerModels [1], currentCharacter.transform);
+		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [1];
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (2);
-		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [1];
 		currentCharacter.name = "Player 2";
 		currentCharacter.gameObject.tag = "Player";
 		thePlayers = GameObject.FindGameObjectsWithTag ("Player");
-		Material playerTwoMaterial = new Material(currentCharacter.GetComponentInChildren<Projector> ().material);
-		playerTwoMaterial.color = Color.yellow;
-		currentCharacter.GetComponentInChildren<Projector> ().material = playerTwoMaterial;
 		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 	}
 

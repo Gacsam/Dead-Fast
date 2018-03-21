@@ -9,7 +9,7 @@ public class PigWandering : MonoBehaviour
     public float pigWanderRadius;
     public float pigWanderTimer;
 
-    private Transform target;
+    private Vector3 target;
     private UnityEngine.AI.NavMeshAgent agent;
     private float timeOfWander;
 
@@ -18,6 +18,7 @@ public class PigWandering : MonoBehaviour
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         timeOfWander = pigWanderTimer;
+		target = this.transform.position;
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class PigWandering : MonoBehaviour
 
         if (timeOfWander >= pigWanderTimer)
         {
-            Vector3 newPos = RandomNavSphere(transform.position, pigWanderRadius, -1);
+			Vector3 newPos = RandomNavSphere(target, pigWanderRadius, -1);
             agent.SetDestination(newPos);
             timeOfWander = 0;
         }

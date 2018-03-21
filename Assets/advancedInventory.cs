@@ -15,6 +15,7 @@ public class advancedInventory : MonoBehaviour {
 	private int thisLayer;
 	public GameObject playerPanel;
 	private Image[] iconsUI;
+	private Text[] ammoUI;
 
 	// Inventory system
 	private List<WeaponScript> theInventory;
@@ -87,6 +88,7 @@ public class advancedInventory : MonoBehaviour {
 	public void Start(){
 		Init ();
 		iconsUI = playerPanel.GetComponentsInChildren<Image> ();
+		ammoUI = playerPanel.GetComponentsInChildren<Text> ();
 		UpdateUI ();
 	}
 
@@ -185,6 +187,7 @@ public class advancedInventory : MonoBehaviour {
 	private void UpdateUI(){
 		for(int i = 0; i < theInventory.Count; i++){
 			WeaponScript weapon = theInventory [i];
+			ammoUI [i].text = weapon.GetAmmo ().ToString();
 			if (weapon.GetAmmo () == 0) {
 				iconsUI [i].color = Color.black;
 			}else if (weapon == theInventory [inventoryIndex]) {

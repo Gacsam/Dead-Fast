@@ -27,15 +27,39 @@ public class ZombieFarmChase : MonoBehaviour {
 	[SerializeField]
 	private bool zombieCanWander = false;
 
+	[SerializeField]
+	private AudioClip zombieMove;
+
+	private AudioSource zombieAudio;
+
+	private Animator zombieAnimator;
+
 	void Start() {
 		zombieGPS = this.GetComponent<NavMeshAgent> ();
 		zombieGPS.speed = wanderSpeed;
 		zombieState = States.Wander;
 		RandomiseWander (this.transform.position);
 		zombieGPS.stoppingDistance = 0.5f;
+		zombieAnimator = GetComponentInChildren<Animator> ();
+		zombieAudio = GetComponent<AudioSource> ();
+	}
+
+	IEnumerator PlaySound(){
+		zombieAudio.Play ();
+		yield return new WaitForSeconds(Random.Range(5, 10));
 	}
 		
 	void Update() {
+
+		if (zombieGPS.velocity.magnitude > 0 && zombieGPS.velocity.magnitude < 1) {
+			zombieAnimator.SetFloat ("speed", zombieGPS.velocity.magnitude);
+			zombieAudio.clip = zombieMove;
+			if (!zombieAudio.isPlaying) {
+				StartCoroutine (PlaySound ());	
+			}
+
+		}
+
 		// In order of importance: follow, search, noise, wander
 		if (zombieState == States.Follow) {
 				if (LineOfSight (zombieTarget)) {
@@ -129,9 +153,7 @@ public class ZombieFarmChase : MonoBehaviour {
 	bool LineOfSight (GameObject target) {
 		if (target) {
 			RaycastHit hit;
-			Debug.DrawLine (transform.position, target.transform.position);
 			if (Physics.Linecast (transform.position, target.transform.position, out hit)) {
-				Debug.Log (hit.collider.gameObject.tag);
 				if (hit.collider.gameObject.tag == target.tag) {
 					return true;
 				}

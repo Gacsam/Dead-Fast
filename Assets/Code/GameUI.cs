@@ -83,6 +83,10 @@ public class GameUI : MonoBehaviour {
 				endMenu.color = Color.blue;
 				endText.text = "Red's house was overrun by zombies";
 			}
+			GameObject[] zombies = GameObject.FindGameObjectsWithTag ("Zombie");
+			foreach (GameObject zombie in zombies)
+				Destroy (zombie.gameObject);
+			FindObjectOfType<ZombieSpawner> ().enabled = false;
 			this.enabled = false;
 		}
 	}

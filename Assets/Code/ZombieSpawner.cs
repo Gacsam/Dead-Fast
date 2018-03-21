@@ -14,27 +14,28 @@ public class ZombieSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Create singleton instance
-		DontDestroyOnLoad(this.gameObject);
 		StartCoroutine (AddZombie ());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameObject.FindGameObjectsWithTag ("Zombie").Length < zombieLimit) {
-			Vector3 point = spawnPoints[Random.Range(0, spawnPoints.Length-1)].position;
-			if (RandomPoint (point, 10, out point)) {
-				Instantiate (zombieTemplate, point, Quaternion.Euler (new Vector3 (0, Random.Range (0, 360), 0)));
-				return;
-			} else
-				return;
-		} else if (GameObject.FindGameObjectsWithTag ("Zombie").Length > zombieLimit) {
-			Destroy (GameObject.FindGameObjectWithTag ("Zombie"));
-		}
+		if (spawnPoints.Length != 0) {
+			if (GameObject.FindGameObjectsWithTag ("Zombie").Length < startZombies) {
+				Vector3 point = spawnPoints [Random.Range (0, spawnPoints.Length-1)].position;
+				if (RandomPoint (point, 10, out point)) {
+					Instantiate (zombieTemplate, point, Quaternion.Euler (new Vector3 (0, Random.Range (0, 360), 0)));
+					return;
+				} else
+					return;
+			} else if (GameObject.FindGameObjectsWithTag ("Zombie").Length > startZombies) {
+				Destroy (GameObject.FindGameObjectWithTag ("Zombie"));
+			}
 
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			zombieLimit -= 1;
-		}else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			zombieLimit += 1;
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				zombieLimit -= 1;
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				zombieLimit += 1;
+			}
 		}
 	}
 
@@ -52,9 +53,8 @@ public class ZombieSpawner : MonoBehaviour {
 	}
 
 	IEnumerator AddZombie(){
-		int beginZombies = startZombies;
 		while (true) {
-			yield return new WaitForSeconds (5); // GameObject.FindObjectOfType<GameUI> ().timeLeft / (zombieLimit - startZombies)
+			yield return new WaitForSeconds (4); // GameObject.FindObjectOfType<GameUI> ().timeLeft / (zombieLimit - startZombies)
 			if (startZombies < zombieLimit) {
 				startZombies++;
 			}
