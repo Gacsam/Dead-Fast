@@ -76,6 +76,10 @@ public class GameUI : MonoBehaviour {
 		} else if (Input.GetKeyDown (KeyCode.Minus)) {
 			timeLeft -= 5;
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			SceneManager.LoadScene (0);
+		}
 		if (timeLeft > 0) {
 			timeLeft -= Time.deltaTime;
 			theTimer.GetComponentInChildren<Text> ().text = Mathf.RoundToInt (timeLeft).ToString ();
