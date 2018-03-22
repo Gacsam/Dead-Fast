@@ -71,8 +71,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1549063791313856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.923897, y: -0.0000010535164, z: 0.23753643}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -32.304, y: 130.63, z: -5.3319}
+  m_LocalScale: {x: 3.5538175, y: 3.5538177, z: 3.5538177}
   m_Children:
   - {fileID: 4128859670526598}
   m_Father: {fileID: 0}
@@ -156,9 +156,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1549063791313856}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.25
-  m_AngularDrag: 0.05
+  m_Mass: 1e+9
+  m_Drag: 1
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -309,8 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBait: 1
-  baitLife: 1000
-  baitDistance: 15
+  baitDistance: 1500
 --- !u!114 &114213902147212350
 MonoBehaviour:
   m_ObjectHideFlags: 1

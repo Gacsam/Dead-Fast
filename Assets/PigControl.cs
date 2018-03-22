@@ -5,18 +5,20 @@ using UnityEngine;
 public class PigControl : ZombieBait {
 
 	private x360_Gamepad gamepadController;
+	[SerializeField]
 	private float pigSpeed = 3;
 	[SerializeField]
 	static private float timeControlling = 15f;
-	[SerializeField]
 
 	private bool isControlled = true;
 	private bool didOink = false;
 
-	GameObject controllingPlayer;
+	private PlayerControllerSS controllingPlayer;
 
 	[SerializeField]
 	private AudioSource pigSound;
+	[SerializeField]
+	private Material firstMaterial;
 
 	void Start(){
 		baitDistance = 5;
@@ -25,23 +27,27 @@ public class PigControl : ZombieBait {
 
 
 	void OnCollisionEnter(Collision col){
-		if (col.collider.tag == "Zombie") {
-			if (isControlled) {
-				controllingPlayer.GetComponentInChildren<PlayerControllerSS>(true).enabled = true;
-				controllingPlayer.gameObject.GetComponentInChildren<Projector> ().enabled = true;
-			}
-			Destroy (this.gameObject);
-		}
+		if(col.collider.tag == "Zombie")
+			RemoveControl ();
 	}
 
 	public IEnumerator TakeControl(x360_Gamepad theGamepad, GameObject thePlayer){
 		this.gamepadController = theGamepad;
-		controllingPlayer = thePlayer;
-
+		controllingPlayer = thePlayer.GetComponentInChildren<PlayerControllerSS>(true);
+		Debug.Log (controllingPlayer.name);
+		if (controllingPlayer.name == "Player 1") {
+			this.GetComponentInChildren<Projector> ().material = firstMaterial;
+		}
 		yield return new WaitForSeconds (timeControlling);
-		controllingPlayer.GetComponentInChildren<PlayerControllerSS>(true).enabled = true;
-		controllingPlayer.gameObject.GetComponentInChildren<Projector> ().enabled = true;
-		Destroy (this.transform.Find("Projector").gameObject);
+	}
+
+	void RemoveControl(){
+		if(this.transform.Find("Projector"))
+			Destroy (this.transform.Find("Projector").gameObject);
+		
+		if (isControlled)
+			controllingPlayer.enabled = true;
+		
 		isControlled = false;
 		this.enabled = false;
 	}
@@ -57,6 +63,7 @@ public class PigControl : ZombieBait {
 	}
 
 	void Oink(){
+		Debug.Log ("oink");
 		pigSound.Play ();
 		setBaitLocation (this.transform.position);
 		didOink = true;
@@ -69,6 +76,10 @@ public class PigControl : ZombieBait {
 			// Oink
 			if (Input.GetMouseButtonDown (0) && !didOink) {
 				Oink ();
+			}
+
+			if (Input.GetMouseButtonDown (1)) {
+				RemoveControl ();
 			}
 
 			if (gamepadController.IsConnected) {

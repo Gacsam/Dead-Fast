@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4741455204885042}
   - component: {fileID: 33801387819627984}
   - component: {fileID: 23676502623419140}
-  - component: {fileID: 64579582412346992}
+  - component: {fileID: 65634035714785110}
   m_Layer: 0
   m_Name: Group10832
   m_TagString: Untagged
@@ -70,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000856017166556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.646244, y: 0.0021939576, z: -43.45609}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: -46.23624, y: 125.64144, z: -4.7945967}
+  m_LocalScale: {x: 0.2843054, y: 0.28430542, z: 0.28430542}
   m_Children:
   - {fileID: 4741455204885042}
   m_Father: {fileID: 0}
@@ -129,10 +129,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!64 &64579582412346992
-MeshCollider:
+--- !u!65 &65634035714785110
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -141,10 +141,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 1
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: a0bff98bca551b045a0cd9ecefa6e2f8, type: 3}
+  m_Size: {x: 5.3126, y: 11.2246, z: 10.1946}
+  m_Center: {x: 0, y: 5.6229, z: -0.47749996}
 --- !u!82 &82951280540299700
 AudioSource:
   m_ObjectHideFlags: 1
@@ -260,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402a821af4ae58c4ebcd449b59610814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pigWanderRadius: 3
+  pigWanderRadius: 50
   pigWanderTimer: 3
 --- !u!195 &195318822203541172
 NavMeshAgent:
@@ -271,7 +269,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 750

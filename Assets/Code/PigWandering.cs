@@ -28,7 +28,7 @@ public class PigWandering : MonoBehaviour
 
         if (timeOfWander >= pigWanderTimer)
         {
-			Vector3 newPos = RandomNavSphere(target, pigWanderRadius, -1);
+			Vector3 newPos = RandomNavSphere(this.transform.position, pigWanderRadius, -1);
             agent.SetDestination(newPos);
             timeOfWander = 0;
         }

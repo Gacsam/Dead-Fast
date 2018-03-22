@@ -11,9 +11,12 @@ public class GameUI : MonoBehaviour {
 	[SerializeField]
 	private Image theTimer;
 	[SerializeField]
+	private Image zombieCounter;
+	[SerializeField]
 	private RectTransform playerOne, playerTwo, middle;
-	private int zombieCount = 20;
+	public int zombieCount = 10;
 	private float panelSize = 500;
+	public int maxZombies = 25;
 
 	public void UpdateCount(int pOne, int pTwo){
 		float displaySize = ((float)pOne / (float)zombieCount) * panelSize;
@@ -39,16 +42,26 @@ public class GameUI : MonoBehaviour {
 	}
 
 	public void Start(){
+		this.maxTime = FindObjectOfType<UIManager> ().maxTime;
+		this.zombieCount = FindObjectOfType<UIManager> ().zombieCount;
+		this.maxZombies = FindObjectOfType<UIManager> ().maxZombies;
+		zombieCounter.transform.Find ("Text").GetComponent<Text> ().text = zombieCount.ToString();
+		zombieCounter.transform.Find ("Count").GetComponent<Image> ().fillAmount = 1 - (float)this.zombieCount / (float)this.maxZombies;
 		timeLeft = maxTime;
-		panelSize = this.transform.Find ("CountPanel").GetComponent<RectTransform> ().sizeDelta.x;
 		StartCoroutine (UpdateZombieCount ());
 		this.transform.Find ("End").GetComponent<Image> ().gameObject.SetActive (false);
+		panelSize = this.transform.Find ("GameUI/CountPanel").GetComponent<RectTransform> ().sizeDelta.x;
+		UpdateCount (0, 0);
 	}
 
 	IEnumerator UpdateZombieCount(){
-		yield return new WaitForSeconds(1);
-		GameObject[] zombies = GameObject.FindGameObjectsWithTag ("Zombie");
-		zombieCount = zombies.Length;
+		while (true) {
+			GameObject[] zombies = GameObject.FindGameObjectsWithTag ("Zombie");
+			zombieCount = zombies.Length;
+			zombieCounter.transform.Find ("Count").GetComponent<Image> ().fillAmount = 1 - (float)zombieCount / (float)maxZombies;
+			zombieCounter.transform.Find ("Text").GetComponent<Text> ().text = zombieCount.ToString();
+			yield return new WaitForSeconds (1);
+		}
 	}
 
 	public void RestartButton(){
@@ -57,7 +70,7 @@ public class GameUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		theTimer.fillAmount = 1 - (timeLeft / maxTime);
+		theTimer.transform.Find ("Count").GetComponent<Image> ().fillAmount = 1 - (timeLeft / maxTime);
 		if (Input.GetKeyDown (KeyCode.Plus) || Input.GetKeyDown (KeyCode.Equals)) {
 			timeLeft += 5;
 		} else if (Input.GetKeyDown (KeyCode.Minus)) {
@@ -65,11 +78,9 @@ public class GameUI : MonoBehaviour {
 		}
 		if (timeLeft > 0) {
 			timeLeft -= Time.deltaTime;
-			theTimer.GetComponentInChildren<Text>().text = Mathf.RoundToInt (timeLeft).ToString();
+			theTimer.GetComponentInChildren<Text> ().text = Mathf.RoundToInt (timeLeft).ToString ();
 		} else {
 			string winner = FindObjectOfType<ZombieCounter> ().PlayerWinner();
-			Destroy(theTimer.GetComponentInChildren<Text> ());
-			Destroy (theTimer.transform.Find ("Circle").gameObject);
 			Image endMenu = this.transform.Find ("End").GetComponent<Image> ();
 			endMenu.gameObject.SetActive (true);
 			Text endText = endMenu.GetComponentInChildren<Text> ();

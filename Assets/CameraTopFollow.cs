@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraTopFollow : MonoBehaviour {
 	[SerializeField]
-	private GameObject playerPrefab;
-	[SerializeField]
 	private Transform[] playerSpawns;
 	private float isometricScale = 1;
 	[SerializeField]
@@ -44,23 +42,19 @@ public class CameraTopFollow : MonoBehaviour {
 	}
 
 	void CreateTwoPlayers(){
-		GameObject currentCharacter = Instantiate (playerPrefab, playerSpawns[0].position, playerSpawns[0].rotation);
+		GameObject currentCharacter = Instantiate (playerModels [0], playerSpawns[0].position, playerSpawns[0].rotation);
 		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [0];
-		Instantiate (playerModels [0], currentCharacter.transform);
 		currentCharacter.name = "Player 1";
 		currentCharacter.gameObject.tag = "Player";
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (1);
-		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
-		currentCharacter = Instantiate (playerPrefab, playerSpawns[1].position, playerSpawns[1].rotation);
-		Instantiate (playerModels [1], currentCharacter.transform);
+		currentCharacter = Instantiate (playerModels [1], playerSpawns[1].position, playerSpawns[1].rotation);
 		currentCharacter.GetComponent<advancedInventory> ().playerPanel = playerPanels [1];
 		currentCharacter.GetComponent<Rigidbody> ().freezeRotation = true;
 		currentCharacter.GetComponent<PlayerControllerSS> ().SetGamepadIndex (2);
 		currentCharacter.name = "Player 2";
 		currentCharacter.gameObject.tag = "Player";
 		thePlayers = GameObject.FindGameObjectsWithTag ("Player");
-		Destroy (currentCharacter.GetComponentInChildren<AudioListener> ());
 	}
 
 	void MoveCamera(){

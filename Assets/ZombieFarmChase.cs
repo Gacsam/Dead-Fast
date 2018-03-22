@@ -14,8 +14,6 @@ public class ZombieFarmChase : MonoBehaviour {
 	public float distanceToNotice = 10;
 	[Tooltip("Zombie wandering speed, running is doubled")]
 	public float wanderSpeed = 1;
-	[Tooltip("How far do zombies hear")]
-	public float maximumNoiseDistance = 25;
 	[Tooltip("After what time do zombies stop looking around the area")]
 	public int searchTime = 10;
 	public enum States{Wander, Noise, Search, Follow};
@@ -46,7 +44,7 @@ public class ZombieFarmChase : MonoBehaviour {
 
 	IEnumerator PlaySound(){
 		zombieAudio.Play ();
-		yield return new WaitForSeconds(Random.Range(5, 10));
+		yield return new WaitForSeconds(Random.Range(10, 30));
 	}
 		
 	void Update() {
@@ -141,18 +139,17 @@ public class ZombieFarmChase : MonoBehaviour {
 	public void baitedZombie(Vector3 baitLocation){
 		// If not following a chicken or something
 		if (!(zombieState == States.Follow)) {
-			if (Vector3.Distance (this.transform.position, baitLocation) < maximumNoiseDistance) {
-				zombieState = States.Noise;
-				// Set the agent's new destination to the player's position
-				zombieGPS.destination = baitLocation;
-				zombieGPS.speed = wanderSpeed * 2;
-			}
+			zombieState = States.Noise;
+			// Set the agent's new destination to the player's position
+			zombieGPS.destination = baitLocation;
+			zombieGPS.speed = wanderSpeed * 2;
 		}
 	}
 
 	bool LineOfSight (GameObject target) {
 		if (target) {
 			RaycastHit hit;
+			Debug.DrawLine (transform.position, target.transform.position);
 			if (Physics.Linecast (transform.position, target.transform.position, out hit)) {
 				if (hit.collider.gameObject.tag == target.tag) {
 					return true;

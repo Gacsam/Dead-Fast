@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraTopFollow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\advancedInventory.cs">
     <Files>
-      <File FileName="Assets\ZombieFarmChase.cs" Line="1" Column="1" />
-      <File FileName="Assets\advancedInventory.cs" Line="90" Column="1" />
-      <File FileName="Assets\Code\ZombieSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\GameUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Sound\PlaySound.cs" Line="1" Column="1" />
-      <File FileName="Assets\PigControl.cs" Line="71" Column="13" />
-      <File FileName="Assets\Code\SS-only\PlayerControllerSS.cs" Line="146" Column="142" />
-      <File FileName="Assets\CameraTopFollow.cs" Line="56" Column="60" />
+      <File FileName="Assets\PigControl.cs" Line="50" Column="3" />
+      <File FileName="Assets\Code\ZombieBait.cs" Line="9" Column="46" />
+      <File FileName="Assets\ZombieFarmChase.cs" Line="16" Column="31" />
+      <File FileName="Assets\CameraTopFollow.cs" Line="5" Column="47" />
+      <File FileName="Assets\Code\GameUI.cs" Line="54" Column="3" />
+      <File FileName="Assets\AllAssets\UI\UIManager.cs" Line="15" Column="27" />
+      <File FileName="Assets\Code\ZombieSpawner.cs" Line="19" Column="1" />
+      <File FileName="Assets\Code\ZombieCounter.cs" Line="1" Column="1" />
+      <File FileName="Assets\advancedInventory.cs" Line="117" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -23,6 +24,12 @@
       <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="185" column="1" />
       <Breakpoint file="C:\Users\Gacsam\Desktop\Dead Fast\Assets\advancedInventory.cs" line="184" column="1" />
       <Breakpoint file="D:\Dead Fast\Assets\advancedInventory.cs" line="90" column="23" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="27" column="1" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="22" column="1" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="24" column="1" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="23" column="1" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="25" column="1" />
+      <Breakpoint file="F:\Dead Fast\Assets\Code\GameUI.cs" line="26" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

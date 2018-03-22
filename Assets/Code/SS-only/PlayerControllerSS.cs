@@ -8,8 +8,8 @@ public class PlayerControllerSS : MonoBehaviour
 	public int gamepadIndex;
 	private Animator myAnimator;
 	private x360_Gamepad gamepad;
-	private int throwForce = 25;
 	[SerializeField]
+	private int throwForce = 25;
 	private advancedInventory playerInventory;
 	[SerializeField]
 	private int moveSpeed = 5;

@@ -14,7 +14,7 @@ public class advancedInventory : MonoBehaviour {
 	public bool dynamicInventory = true;
 	private int thisLayer;
 	public GameObject playerPanel;
-	private Image[] iconsUI;
+	private List<Image> iconsUI;
 	private Text[] ammoUI;
 
 	// Inventory system
@@ -47,6 +47,7 @@ public class advancedInventory : MonoBehaviour {
 		theInventory = new List<WeaponScript>();
 		heldWeapons = new List<GameObject>();
 		projectileSpawn = new List<Transform>();
+		iconsUI = new List<Image> ();
 	}
 
 	// Do not touch this, called by WeaponPickup, gets the weapon held by the player and its spawn position
@@ -87,7 +88,16 @@ public class advancedInventory : MonoBehaviour {
 
 	public void Start(){
 		Init ();
-		iconsUI = playerPanel.GetComponentsInChildren<Image> ();
+		Image[] theIcons = playerPanel.GetComponentsInChildren<Image> ();
+		foreach (Image theIcon in theIcons) {
+			Debug.Log (theIcon);
+			if (theIcon.name != "ImageHolder") {
+				iconsUI.Add (theIcon);
+			}
+		}
+		for(int i = 0; i >= iconsUI.Count; i++){
+
+		}
 		ammoUI = playerPanel.GetComponentsInChildren<Text> ();
 		UpdateUI ();
 	}

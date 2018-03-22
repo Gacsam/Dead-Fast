@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4034456149508096}
   - component: {fileID: 33425095905764148}
   - component: {fileID: 23163501256996984}
+  - component: {fileID: 65597231076604658}
   m_Layer: 0
   m_Name: Group5503
-  m_TagString: Untagged
+  m_TagString: Bait
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 114645179651389818}
   - component: {fileID: 82038525376695300}
   - component: {fileID: 114214406513735908}
+  - component: {fileID: 195389853256183882}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Bait
@@ -57,6 +59,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4366997132955480}
+  - component: {fileID: 119708698206973204}
   m_Layer: 0
   m_Name: Projector
   m_TagString: Untagged
@@ -71,8 +74,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1531731139185856}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0125, y: 0.0125, z: 0.0125}
+  m_LocalPosition: {x: 0, y: 0, z: -0.331}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4110846503063326}
   m_RootOrder: 0
@@ -84,8 +87,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565791646067422}
   m_LocalRotation: {x: 0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -17.706072, y: 0.30498806, z: 3.4444358}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -31.008, y: 130.63, z: -11.656}
+  m_LocalScale: {x: 0.4264581, y: 0.42645812, z: 0.42645812}
   m_Children:
   - {fileID: 4034456149508096}
   - {fileID: 4366997132955480}
@@ -99,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1738214880462580}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.018, z: -0}
+  m_LocalPosition: {x: 0, y: 29.62, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4110846503063326}
@@ -159,6 +162,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65597231076604658
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1531731139185856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.019, y: 32.605602, z: 57.1087}
+  m_Center: {x: 0, y: 15.852301, z: -6.6368504}
 --- !u!82 &82038525376695300
 AudioSource:
   m_ObjectHideFlags: 1
@@ -262,10 +277,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBait: 2
-  baitLife: 1
-  baitDistance: 15
-  isControlled: 1
+  baitDistance: 150
+  pigSpeed: 75
   pigSound: {fileID: 0}
+  firstMaterial: {fileID: 2100000, guid: 2335ea6067a69204fb3a52d442b4da85, type: 2}
 --- !u!114 &114522027694948610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,3 +334,42 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!119 &119708698206973204
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738214880462580}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 100
+  m_FieldOfView: 60
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 5
+  m_Material: {fileID: 2100000, guid: 44c8c8479a20edb4cbb045571776f055, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 4294966271
+--- !u!195 &195389853256183882
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1565791646067422}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.25
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

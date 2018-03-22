@@ -8,7 +8,6 @@ public class PlaySound : MonoBehaviour {
 	void Start () {
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.Play();
-		audio.Play(44100);
 	}
 	
 	// Update is called once per frame
