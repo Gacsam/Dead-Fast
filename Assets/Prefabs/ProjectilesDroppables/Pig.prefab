@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisBait: 2
   baitDistance: 150
-  pigSpeed: 75
+  pigSpeed: 25
   pigSound: {fileID: 0}
   firstMaterial: {fileID: 2100000, guid: 2335ea6067a69204fb3a52d442b4da85, type: 2}
 --- !u!114 &114522027694948610

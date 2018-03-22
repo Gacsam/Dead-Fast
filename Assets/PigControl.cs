@@ -12,6 +12,7 @@ public class PigControl : ZombieBait {
 
 	private bool isControlled = true;
 	private bool didOink = false;
+	private bool keyboardMouse = false;
 
 	private PlayerControllerSS controllingPlayer;
 
@@ -53,6 +54,14 @@ public class PigControl : ZombieBait {
 	}
 
 	void MovePlayer(){
+		if (Input.GetMouseButtonDown (0) && !didOink) {
+			Oink ();
+		}
+
+		if (Input.GetMouseButtonDown (1)) {
+			RemoveControl ();
+		}
+
 		Vector3 rbMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		if (rbMove != Vector3.zero) {
 			rbMove = Camera.main.transform.Find("CameraDirection").transform.InverseTransformDirection (rbMove);
@@ -72,19 +81,15 @@ public class PigControl : ZombieBait {
 	// Update is called once per frame
 	void Update () {
 		if (isControlled) {
-			MovePlayer ();
+			if(keyboardMouse)
+				MovePlayer ();
 			// Oink
-			if (Input.GetMouseButtonDown (0) && !didOink) {
-				Oink ();
-			}
-
-			if (Input.GetMouseButtonDown (1)) {
-				RemoveControl ();
-			}
-
 			if (gamepadController.IsConnected) {
 				if (gamepadController.GetTriggerTap_R () && !didOink) {
 					Oink ();
+				}
+				if(gamepadController.GetTriggerTap_L()){
+					RemoveControl();
 				}
 
 				Vector3 rbMove = new Vector3 (this.gamepadController.GetStick_L ().X, 0, this.gamepadController.GetStick_L ().Y);

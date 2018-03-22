@@ -52,6 +52,7 @@ public class PlayerControllerSS : MonoBehaviour
 				}
 
 				Vector3 rbMove = new Vector3 (this.gamepad.GetStick_L ().X, 0, this.gamepad.GetStick_L ().Y);
+				myAnimator.SetFloat ("speed", rbMove.magnitude);
 				if (rbMove != Vector3.zero) {
 					rbMove = Camera.main.transform.Find("CameraDirection").transform.TransformDirection (rbMove);
 					rbMove.y = 0;
@@ -94,6 +95,7 @@ public class PlayerControllerSS : MonoBehaviour
 			playerInventory.HideWeapon();
 			notUsingWeapon = false;
 			myAnimator.SetBool ("fire", true);
+			myAnimator.SetFloat ("speed", 0);
 			if (theWeapon == WeaponScript.Weapon.Grenade) {
 				GrenadeThrow ();
 			} else if (theWeapon == WeaponScript.Weapon.Barricade) {

@@ -2520,8 +2520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamepadIndex: 2
-  throwForce: 100
-  moveSpeed: 40
+  throwForce: 50
+  moveSpeed: 100
   weaponDelay: 0.25
   mouseKeyboard: 0
   gamepadPlugged: 1
